@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>1f4f699b-9063-4632-91ef-05676cde04e8</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="V1\Infrastructure\IoC\" />
+    <Folder Include="V1\Infrastructure\Persistence\Configurations\" />
+    <Folder Include="V1\Infrastructure\Persistence\Context\" />
+  </ItemGroup>
+
+
+</Project>

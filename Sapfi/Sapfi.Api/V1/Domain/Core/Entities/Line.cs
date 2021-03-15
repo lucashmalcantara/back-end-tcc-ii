@@ -1,16 +1,27 @@
-﻿using Sapfi.Api.V1.Domain.Core.Entities.Interfaces;
+﻿using Sapfi.Api.V1.Domain.Core.Entities.Base;
 using System;
 
 namespace Sapfi.Api.V1.Domain.Core.Entities
 {
-    public class Line : IEntity
+    public class Line : BaseEntity
     {
-        public int Id => throw new NotImplementedException();
+        public int QuantityOfTicket { get; private set; }
+        public int WaitingTime { get; private set; }
+        public int CompanyId { get; private set; }
 
-        public DateTime CreatedAt => throw new NotImplementedException();
-
-        public DateTime? UpdatedAt => throw new NotImplementedException();
-
-        public bool IsDeleted => throw new NotImplementedException();
+        public Line(
+            int id,
+            DateTime createdAt,
+            DateTime? updateAt,
+            bool isDeleted,
+            int quantityOfTicket, 
+            int waitingTime, 
+            int companyId)
+            : base(id, createdAt, updateAt, isDeleted)
+        {
+            QuantityOfTicket = quantityOfTicket;
+            WaitingTime = waitingTime;
+            CompanyId = companyId;
+        }
     }
 }

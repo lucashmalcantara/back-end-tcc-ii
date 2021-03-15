@@ -1,20 +1,30 @@
-﻿using Sapfi.Api.V1.Domain.Core.Entities.Interfaces;
+﻿using Sapfi.Api.V1.Domain.Core.Entities.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Domain.Core.Entities
 {
-    public class Company : IEntity
+    public class Company : BaseEntity
     {
-        public int Id => throw new NotImplementedException();
+        public string ApiToken { get; private set; }
+        public string Document { get; private set; }
+        public string Name { get; private set; }
+        public string TradingName { get; private set; }
 
-        public DateTime CreatedAt => throw new NotImplementedException();
-
-        public DateTime? UpdatedAt => throw new NotImplementedException();
-
-        public bool IsDeleted => throw new NotImplementedException();
+        public Company(
+            int id,
+            DateTime createdAt,
+            DateTime? updateAt,
+            bool isDeleted,
+            string apiToken, 
+            string document, 
+            string name, 
+            string tradingName)
+            : base(id, createdAt, updateAt, isDeleted)
+        {
+            ApiToken = apiToken;
+            Document = document;
+            Name = name;
+            TradingName = tradingName;
+        }
     }
 }

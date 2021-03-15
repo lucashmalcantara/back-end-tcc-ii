@@ -1,16 +1,30 @@
-﻿using Sapfi.Api.V1.Domain.Core.Entities.Interfaces;
+﻿using Sapfi.Api.V1.Domain.Core.Entities.Base;
 using System;
 
 namespace Sapfi.Api.V1.Domain.Core.Entities
 {
-    public class LineFollowUp : IEntity
+    public class LineFollowUp : BaseEntity
     {
-        public int Id => throw new NotImplementedException();
+        public int LineId { get; private set; }
+        public string DeviceToken { get; private set; }
+        public int NotifyWhen { get; private set; }
+        public bool IsNotified { get; private set; }
 
-        public DateTime CreatedAt => throw new NotImplementedException();
-
-        public DateTime? UpdatedAt => throw new NotImplementedException();
-
-        public bool IsDeleted => throw new NotImplementedException();
+        public LineFollowUp(
+            int id,
+            DateTime createdAt,
+            DateTime? updateAt,
+            bool isDeleted,
+            int lineId, 
+            string deviceToken, 
+            int notifyWhen, 
+            bool isNotified)
+            : base(id, createdAt, updateAt, isDeleted)
+        {
+            LineId = lineId;
+            DeviceToken = deviceToken;
+            NotifyWhen = notifyWhen;
+            IsNotified = isNotified;
+        }
     }
 }

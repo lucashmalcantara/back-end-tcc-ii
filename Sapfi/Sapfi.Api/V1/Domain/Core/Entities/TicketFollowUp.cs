@@ -1,16 +1,24 @@
-﻿using Sapfi.Api.V1.Domain.Core.Entities.Interfaces;
+﻿using Sapfi.Api.V1.Domain.Core.Entities.Base;
 using System;
 
 namespace Sapfi.Api.V1.Domain.Core.Entities
 {
-    public class TicketFollowUp : IEntity
+    public class TicketFollowUp : BaseEntity
     {
-        public int Id => throw new NotImplementedException();
+        public int TicketId { get; private set; }
+        public string DeviceToken { get; private set; }
 
-        public DateTime CreatedAt => throw new NotImplementedException();
-
-        public DateTime? UpdatedAt => throw new NotImplementedException();
-
-        public bool IsDeleted => throw new NotImplementedException();
+        public TicketFollowUp(
+            int id,
+            DateTime createdAt,
+            DateTime? updateAt,
+            bool isDeleted, 
+            int ticketId, 
+            string deviceToken)
+            : base(id, createdAt, updateAt, isDeleted)
+        {
+            TicketId = ticketId;
+            DeviceToken = deviceToken;
+        }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sapfi.Api.Swagger;
+using Sapfi.Api.V1.Infrastructure.IoC;
 
 namespace Sapfi.Api
 {
@@ -40,6 +41,9 @@ namespace Sapfi.Api
             services.AddSwaggerGen();
 
             services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+            RepositoriesBootstrapper.RegisterServices(services);
+            RepositorysBootstrapper.RegisterServices(services, Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionDescriptionProvider)

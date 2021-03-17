@@ -33,7 +33,7 @@ namespace Sapfi.Api.Swagger
                 @"SAPFI (Sistema de Alerta de Posição em Filas, or in English, Line Position Warning System) is a system to prevent crowding.",
                 Contact = new OpenApiContact()
                 {
-                    Name = "Contact Center - SAPFI",
+                    Name = "SAPFI",
                     Email = "lucashmalcantara@gmail.com"
                 }
             };

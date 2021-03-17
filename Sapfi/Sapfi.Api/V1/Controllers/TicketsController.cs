@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
 {
-    public class TicketsController
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    public class TicketsController : ControllerBase
     {
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(true);
+        }
     }
 }

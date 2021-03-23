@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sapfi.Api.V1.Domain.Core.Dtos;
+using Sapfi.Api.V1.Domain.Core.Dtos.Line.Get;
+using Sapfi.Api.V1.Domain.Core.Models;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -9,10 +12,15 @@ namespace Sapfi.Api.V1.Controllers
     public class LinesController : ControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLineDto))]
+        public async Task<IActionResult> Get(int companyId)
         {
-            return Ok(true);
+            return Ok(new GetLineDto
+            {
+                Id = 1,
+                QuantityOfTicket = 15,
+                WaitingTime = 35
+            });
         }
     }
 }

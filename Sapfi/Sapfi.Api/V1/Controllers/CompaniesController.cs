@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos;
+using Sapfi.Api.V1.Domain.Core.Dtos.Company.Get;
 using Sapfi.Api.V1.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,10 +12,10 @@ namespace Sapfi.Api.V1.Controllers
     public class CompaniesController : ControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DefaultResponse<IReadOnlyCollection<CompanyDto>>))]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<GetCompanyDto>))]
+        public async Task<IActionResult> GetByAddress(string country, string state)
         {
-            return Ok(new List<CompanyDto>());
+            return Ok(new List<GetCompanyDto>());
         }
     }
 }

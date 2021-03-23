@@ -7,7 +7,6 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
     {
         public int QuantityOfTicket { get; private set; }
         public int WaitingTime { get; private set; }
-        public int CompanyId { get; private set; }
 
         public Line(
             int id,
@@ -21,7 +20,6 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         {
             QuantityOfTicket = quantityOfTicket;
             WaitingTime = waitingTime;
-            CompanyId = companyId;
         }
     }
 }

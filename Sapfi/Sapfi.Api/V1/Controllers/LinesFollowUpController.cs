@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sapfi.Api.V1.Domain.Core.Dtos.LineFollowUp.Get;
+using Sapfi.Api.V1.Domain.Core.Models;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -8,11 +10,19 @@ namespace Sapfi.Api.V1.Controllers
     [Route("v{version:apiVersion}/[controller]")]
     public class LinesFollowUpController : ControllerBase
     {
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> CreateTicketFollowUp([FromBody] GetLineFollowUp lineFollowUp)
         {
-            return Ok(true);
+            const int lineFollowUpId = 1;
+            return Ok(lineFollowUpId);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            return NoContent();
         }
     }
 }

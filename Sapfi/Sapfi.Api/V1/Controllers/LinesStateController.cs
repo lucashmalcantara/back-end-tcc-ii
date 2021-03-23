@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sapfi.Api.V1.Domain.Core.Dtos.LineState.Update;
+using Sapfi.Api.V1.Domain.Core.Models;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -8,11 +10,11 @@ namespace Sapfi.Api.V1.Controllers
     [Route("v{version:apiVersion}/[controller]")]
     public class LinesStateController : ControllerBase
     {
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(bool))]
+        public async Task<IActionResult> Update([FromBody] UpdateLineStateDto lineStateDto)
         {
-            return Ok(true);
+            return new ObjectResult(true);
         }
     }
 }

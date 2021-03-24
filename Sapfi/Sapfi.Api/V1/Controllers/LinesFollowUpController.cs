@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.LineFollowUp.Get;
-using Sapfi.Api.V1.Domain.Core.Models;
+using Sapfi.Api.V1.Domain.Core.Dtos.LineFollowUp.Create;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -11,16 +10,15 @@ namespace Sapfi.Api.V1.Controllers
     public class LinesFollowUpController : ControllerBase
     {
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        public async Task<IActionResult> CreateTicketFollowUp([FromBody] GetLineFollowUp lineFollowUp)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Create([FromBody] CreateLineFollowUp createLineFollowUp)
         {
-            const int lineFollowUpId = 1;
-            return Ok(lineFollowUpId);
+            return NoContent();
         }
 
-        [HttpGet]
+        [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteById(int id)
+        public async Task<IActionResult> Delete(int lineId, string deviceToken)
         {
             return NoContent();
         }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Domain.Core.Dtos.Ticket.Get;
-using Sapfi.Api.V1.Domain.Core.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -13,15 +12,15 @@ namespace Sapfi.Api.V1.Controllers
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTicketDto))]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> Get(int companyId, string number)
         {
             return Ok(new GetTicketDto
             {
                 Id = 1,
                 IssueDate = DateTime.Now,
-                LinePosition = 1,
-                Number = "456",
-                WaitingTime = 5
+                LinePosition = 5,
+                Number = "789",
+                WaitingTime = 15
             });
         }
     }

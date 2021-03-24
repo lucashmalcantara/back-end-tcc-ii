@@ -1,33 +1,26 @@
-﻿using System.Collections.Generic;
-
-namespace Sapfi.Api.V1.Domain.Core.Models
+﻿namespace Sapfi.Api.V1.Domain.Core.Models
 {
     public sealed class DefaultResponse<T>
     {
         public T Data { get; private set; }
-        public bool Error { get; private set; }
-        public IEnumerable<string> Messasges { get; private set; }
+        public bool HasError { get; private set; }
+        public ErrorResponse ErrorResponse { get; private set; }
 
-        private DefaultResponse(T data, bool error, IEnumerable<string> messasges)
+        private DefaultResponse(T data, bool hasError, ErrorResponse errorResponse)
         {
             Data = data;
-            Error = error;
-            Messasges = messasges;
+            HasError = hasError;
+            ErrorResponse = errorResponse;
         }
 
         public static DefaultResponse<T> Success(T data)
         {
-            return new DefaultResponse<T>(data, false, new List<string>());
+            return new DefaultResponse<T>(data, false, null);
         }
 
-        public static DefaultResponse<T> Fail(T data, List<string> messages)
+        public static DefaultResponse<T> Fail(ErrorResponse errorResponse)
         {
-            return new DefaultResponse<T>(data, true, messages);
-        }
-
-        public static DefaultResponse<T> Fail(T data, string message)
-        {
-            return new DefaultResponse<T>(data, true, new List<string> { message });
+            return new DefaultResponse<T>(default, true, errorResponse);
         }
     }
 }

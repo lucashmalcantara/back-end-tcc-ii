@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Domain.Core.Dtos.LineState.Update;
-using Sapfi.Api.V1.Domain.Core.Models;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -10,11 +9,11 @@ namespace Sapfi.Api.V1.Controllers
     [Route("v{version:apiVersion}/[controller]")]
     public class LinesStateController : ControllerBase
     {
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(bool))]
-        public async Task<IActionResult> Update([FromBody] UpdateLineStateDto lineStateDto)
+        [HttpPost("{companyToken}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Update(string companyToken, [FromBody] UpdateLineStateDto updateLineStateDto)
         {
-            return new ObjectResult(true);
+            return NoContent();
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos;
 using Sapfi.Api.V1.Domain.Core.Dtos.Line.Get;
-using Sapfi.Api.V1.Domain.Core.Models;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -13,7 +11,7 @@ namespace Sapfi.Api.V1.Controllers
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLineDto))]
-        public async Task<IActionResult> Get(int companyId)
+        public async Task<IActionResult> GetByCompanyId(int companyId)
         {
             return Ok(new GetLineDto
             {

@@ -14,8 +14,7 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
             DateTime? updateAt,
             bool isDeleted,
             int quantityOfTicket, 
-            int waitingTime, 
-            int companyId)
+            int waitingTime)
             : base(id, createdAt, updateAt, isDeleted)
         {
             QuantityOfTicket = quantityOfTicket;

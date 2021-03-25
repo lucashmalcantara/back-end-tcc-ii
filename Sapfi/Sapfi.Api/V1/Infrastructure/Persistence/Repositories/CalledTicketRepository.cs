@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories;
 
 namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories
 {
-    public class CalledTicketRepository
+    public class CalledTicketRepository : ICalledTicketRepository
     {
         
     }

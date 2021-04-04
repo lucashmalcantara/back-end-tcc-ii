@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.CalledTicket.Get;
+using Sapfi.Api.V1.Controllers.Models.CalledTicket.Get;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -20,22 +20,22 @@ namespace Sapfi.Api.V1.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCalledTicketDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCalledTicketModel))]
         public async Task<IActionResult> GetByCompanyId(int companyId)
         {
-            return Ok(new List<GetCalledTicketDto>()
+            return Ok(new List<GetCalledTicketModel>()
             {
-                new GetCalledTicketDto
+                new GetCalledTicketModel
                 {
                     CalledAt = DateTime.Now,
                     Number = "789"
                 },
-                new GetCalledTicketDto
+                new GetCalledTicketModel
                 {
                     CalledAt = DateTime.Now.AddMinutes(-1),
                     Number = "456"
                 },
-                new GetCalledTicketDto
+                new GetCalledTicketModel
                 {
                     CalledAt = DateTime.Now.AddMinutes(-2),
                     Number = "123"

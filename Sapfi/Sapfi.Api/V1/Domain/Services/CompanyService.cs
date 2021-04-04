@@ -1,4 +1,4 @@
-﻿using Sapfi.Api.V1.Domain.Core.Dtos.Company.Get;
+﻿using Sapfi.Api.V1.Domain.Core.Entities;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Core.Models;
 using System;
@@ -9,7 +9,7 @@ namespace Sapfi.Api.V1.Domain.Services
 {
     public class CompanyService : ICompanyService
     {
-        public async Task<DefaultResponse<IReadOnlyCollection<GetCompanyDto>>> Get(string country, string state)
+        public async Task<DefaultResponse<IReadOnlyCollection<Company>>> Get(string country, string state)
         {
             throw new NotImplementedException();
         }

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Sapfi.Api.V1.Domain.Core.Dtos.LineState.Update
+namespace Sapfi.Api.V1.Controllers.Models.LineState.Post
 {
-    public class UpdateLineStateCalledTicketDto
+    public class PostLineStateCalledTicketModel
     {
         public string Number { get; set; }
         public DateTime CalledAt { get; set; }

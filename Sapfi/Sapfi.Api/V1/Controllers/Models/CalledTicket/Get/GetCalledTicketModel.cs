@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Sapfi.Api.V1.Domain.Core.Dtos.CalledTicket.Get
+namespace Sapfi.Api.V1.Controllers.Models.CalledTicket.Get
 {
-    public class GetCalledTicketDto
+    public class GetCalledTicketModel
     {
         public string Number { get; set; }
         public DateTime CalledAt { get; set; }

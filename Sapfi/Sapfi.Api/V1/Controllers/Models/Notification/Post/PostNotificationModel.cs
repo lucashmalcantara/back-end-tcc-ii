@@ -1,6 +1,6 @@
-﻿namespace Sapfi.Api.V1.Domain.Core.Dtos.Notification.Create
+﻿namespace Sapfi.Api.V1.Controllers.Models.Notification.Post
 {
-    public class CreateNotificationDto
+    public class PostNotificationModel
     {
         public string Title { get; set; }
         public string Message { get; set; }

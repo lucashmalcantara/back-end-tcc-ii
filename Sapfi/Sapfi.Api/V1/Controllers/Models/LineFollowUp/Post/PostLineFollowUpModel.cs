@@ -1,6 +1,6 @@
-﻿namespace Sapfi.Api.V1.Domain.Core.Dtos.LineFollowUp.Create
+﻿namespace Sapfi.Api.V1.Controllers.Models.LineFollowUp.Post
 {
-    public class CreateLineFollowUp
+    public class PostLineFollowUpModel
     {
         public int LineId { get; set; }
         public string DeviceToken { get; set; }

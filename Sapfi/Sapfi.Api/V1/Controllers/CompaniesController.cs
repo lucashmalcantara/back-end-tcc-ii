@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.Company.Get;
+using Sapfi.Api.V1.Controllers.Models.Company.Get;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,15 +11,15 @@ namespace Sapfi.Api.V1.Controllers
     public class CompaniesController : ControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<GetCompanyDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<GetCompanyModel>))]
         public async Task<IActionResult> GetByAddress(string country, string state)
         {
-            return Ok(new List<GetCompanyDto>()
+            return Ok(new List<GetCompanyModel>()
             {
-                new GetCompanyDto
+                new GetCompanyModel
                 {
                     Id = 1,
-                    Address = new GetCompanyAddressDto
+                    Address = new GetCompanyAddressModel
                     {
                         City = "Contagem",
                         Complement = "Loja 01",
@@ -32,10 +32,10 @@ namespace Sapfi.Api.V1.Controllers
                     },
                     TradingName = "Restaurante 01"
                 },
-                new GetCompanyDto
+                new GetCompanyModel
                 {
                     Id = 2,
-                    Address = new GetCompanyAddressDto
+                    Address = new GetCompanyAddressModel
                     {
                         City = "Contagem",
                         Complement = "Loja 02",
@@ -48,10 +48,10 @@ namespace Sapfi.Api.V1.Controllers
                     },
                     TradingName = "Restaurante 02"
                 },
-                new GetCompanyDto
+                new GetCompanyModel
                 {
                     Id = 3,
-                    Address = new GetCompanyAddressDto
+                    Address = new GetCompanyAddressModel
                     {
                         City = "Contagem",
                         Complement = null,

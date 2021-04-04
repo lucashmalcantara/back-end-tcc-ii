@@ -1,6 +1,6 @@
-﻿namespace Sapfi.Api.V1.Domain.Core.Dtos.Line.Get
+﻿namespace Sapfi.Api.V1.Controllers.Models.Line.Get
 {
-    public class GetLineDto
+    public class GetLineModel
     {
         public int Id { get; set; }
         public int QuantityOfTicket { get; set; }

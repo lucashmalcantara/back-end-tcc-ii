@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.TicketFollowUp.Create;
+using Sapfi.Api.V1.Controllers.Models.TicketFollowUp.Post;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -11,7 +11,7 @@ namespace Sapfi.Api.V1.Controllers
     {
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Create([FromBody] CreateTicketFollowUpDto createTicketFollowUpDto)
+        public async Task<IActionResult> Create([FromBody] PostTicketFollowUpModel createTicketFollowUpDto)
         {
             return NoContent();
         }

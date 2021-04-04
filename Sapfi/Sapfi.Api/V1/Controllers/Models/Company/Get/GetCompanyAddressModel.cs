@@ -1,6 +1,6 @@
-﻿namespace Sapfi.Api.V1.Domain.Core.Dtos.Company.Get
+﻿namespace Sapfi.Api.V1.Controllers.Models.Company.Get
 {
-    public class GetCompanyAddressDto
+    public class GetCompanyAddressModel
     {
         public string Country { get; set; }
         public string State { get; set; }

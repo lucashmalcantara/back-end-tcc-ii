@@ -1,6 +1,6 @@
-﻿namespace Sapfi.Api.V1.Domain.Core.Dtos.LineState.Update
+﻿namespace Sapfi.Api.V1.Controllers.Models.LineState.Post
 {
-    public class UpdateLineStateLineDto
+    public class PostLineStateLineModel
     {
         public int QuantityOfTicket { get; set; }
         public int WaitingTime { get; set; }

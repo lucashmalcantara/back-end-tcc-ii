@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace Sapfi.Api.V1.Domain.Core.Dtos.LineState.Update
+namespace Sapfi.Api.V1.Controllers.Models.Ticket.Get
 {
-    public class UpdateLineStateTicketDto
+    public class GetTicketModel
     {
+        public int Id { get; set; }
         public string Number { get; set; }
         public DateTime IssueDate { get; set; }
         public int LinePosition { get; set; }

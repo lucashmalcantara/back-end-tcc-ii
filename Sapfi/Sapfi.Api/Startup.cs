@@ -42,7 +42,7 @@ namespace Sapfi.Api
 
             services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-            RepositoriesBootstrapper.RegisterServices(services);
+            RepositoriesBootstrapper.RegisterServices(services, Configuration);
             RepositorysBootstrapper.RegisterServices(services, Configuration);
         }
 

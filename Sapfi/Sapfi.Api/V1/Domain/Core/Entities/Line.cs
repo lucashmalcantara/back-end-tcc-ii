@@ -11,11 +11,11 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         public Line(
             int id,
             DateTime createdAt,
-            DateTime? updateAt,
+            DateTime? updatedAt,
             bool isDeleted,
             int quantityOfTicket, 
             int waitingTime)
-            : base(id, createdAt, updateAt, isDeleted)
+            : base(id, createdAt, updatedAt, isDeleted)
         {
             QuantityOfTicket = quantityOfTicket;
             WaitingTime = waitingTime;

@@ -12,10 +12,10 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base
         {
         }
 
-        public virtual void Create(TEntity entity, string createdBy = null) =>
+        public virtual void Create(TEntity entity) =>
             _context.Set<TEntity>().Add(entity);
 
-        public virtual void Update(TEntity entity, string modifiedBy = null)
+        public virtual void Update(TEntity entity)
         {
             _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;

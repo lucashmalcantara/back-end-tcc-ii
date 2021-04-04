@@ -5,8 +5,8 @@ namespace Sapfi.Api.V1.Domain.Core.Interfaces.Repositories.Base
 {
     public interface IRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class, IEntity
     {
-        void Create(TEntity entity, string createdBy = null);
-        void Update(TEntity entity, string modifiedBy = null);
+        void Create(TEntity entity);
+        void Update(TEntity entity);
         void Delete(object id);
         void Delete(TEntity entity);
         void Save();

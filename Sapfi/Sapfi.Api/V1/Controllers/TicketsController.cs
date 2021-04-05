@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.Ticket.Get;
+using Sapfi.Api.V1.Controllers.Models.Ticket.Get;
 using System;
 using System.Threading.Tasks;
 
@@ -11,10 +11,10 @@ namespace Sapfi.Api.V1.Controllers
     public class TicketsController : ControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTicketDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTicketModel))]
         public async Task<IActionResult> Get(int companyId, string number)
         {
-            return Ok(new GetTicketDto
+            return Ok(new GetTicketModel
             {
                 Id = 1,
                 IssueDate = DateTime.Now,

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories;
-using Sapfi.Api.V1.Infrastructure.Persistence.Context;
 using Sapfi.Api.V1.Infrastructure.Persistence.Repositories;
 
 namespace Sapfi.Api.V1.Infrastructure.IoC
@@ -17,9 +16,6 @@ namespace Sapfi.Api.V1.Infrastructure.IoC
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<ITicketFollowUpRepository, TicketFollowUpRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
-
-            //services.AddDbContext<SapfiDbContext>(options =>
-            //    options.UseNpgsql(configuration.GetConnectionString("defaultConnection"), options => options.EnableRetryOnFailure()));
         }
     }
 }

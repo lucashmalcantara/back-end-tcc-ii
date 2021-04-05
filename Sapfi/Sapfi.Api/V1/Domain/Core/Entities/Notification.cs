@@ -13,13 +13,13 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         public Notification(
             int id, 
             DateTime createdAt, 
-            DateTime? updateAt, 
+            DateTime? updatedAt, 
             bool isDeleted, 
             string title, 
             string body, 
             string deviceToken, 
             bool isDelivered) 
-            : base(id, createdAt, updateAt, isDeleted)
+            : base(id, createdAt, updatedAt, isDeleted)
         {
             Title = title;
             Body = body;

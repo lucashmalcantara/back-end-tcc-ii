@@ -7,19 +7,19 @@ namespace Sapfi.Api.V1.Domain.Core.Entities.Base
     {
         private int _id;
         private DateTime _createdAt;
-        private DateTime? _updateAt;
+        private DateTime? _updatedAt;
         private bool _isDeleted;
         
         public int Id => _id;
         public DateTime CreatedAt => _createdAt;
-        public DateTime? UpdatedAt => _updateAt;
+        public DateTime? UpdatedAt => _updatedAt;
         public bool IsDeleted => _isDeleted;
 
-        public BaseEntity(int id, DateTime createdAt, DateTime? updateAt, bool isDeleted)
+        public BaseEntity(int id, DateTime createdAt, DateTime? updatedAt, bool isDeleted)
         {
             _id = id;
             _createdAt = createdAt;
-            _updateAt = updateAt;
+            _updatedAt = updatedAt;
             _isDeleted = isDeleted;
         }
     }

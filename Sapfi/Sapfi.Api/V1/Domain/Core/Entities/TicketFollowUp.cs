@@ -11,11 +11,11 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         public TicketFollowUp(
             int id,
             DateTime createdAt,
-            DateTime? updateAt,
+            DateTime? updatedAt,
             bool isDeleted,
             string number, 
             string deviceToken)
-            : base(id, createdAt, updateAt, isDeleted)
+            : base(id, createdAt, updatedAt, isDeleted)
         {
             Number = number;
             DeviceToken = deviceToken;

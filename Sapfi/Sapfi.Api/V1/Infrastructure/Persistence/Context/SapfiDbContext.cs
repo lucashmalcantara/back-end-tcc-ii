@@ -14,14 +14,14 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Context
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            builder.Entity<Address>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<CalledTicket>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<Company>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<Line>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<LineFollowUp>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<Notification>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<Ticket>().HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<TicketFollowUp>().HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<Address>().ToTable("address").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<CalledTicket>().ToTable("called_ticket").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<Company>().ToTable("company").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<Line>().ToTable("line").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<LineFollowUp>().ToTable("line_follow_up").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<Notification>().ToTable("notification").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<Ticket>().ToTable("ticket").HasQueryFilter(p => !p.IsDeleted);
+            builder.Entity<TicketFollowUp>().ToTable("ticket_follow_up").HasQueryFilter(p => !p.IsDeleted);
 
             base.OnModelCreating(builder);
         }

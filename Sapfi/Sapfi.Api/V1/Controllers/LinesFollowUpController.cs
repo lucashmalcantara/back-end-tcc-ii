@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sapfi.Api.V1.Domain.Core.Dtos.LineFollowUp.Create;
+using Sapfi.Api.V1.Controllers.Models.LineFollowUp.Post;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -11,7 +11,7 @@ namespace Sapfi.Api.V1.Controllers
     {
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Create([FromBody] CreateLineFollowUp createLineFollowUp)
+        public async Task<IActionResult> Create([FromBody] PostLineFollowUpModel createLineFollowUp)
         {
             return NoContent();
         }

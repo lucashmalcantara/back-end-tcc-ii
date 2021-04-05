@@ -14,14 +14,14 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         public Ticket(
             int id,
             DateTime createdAt,
-            DateTime? updateAt,
+            DateTime? updatedAt,
             bool isDeleted, 
             string number, 
             DateTime issueDate, 
             int linePosition, 
             int waitingTime, 
             int companyId)
-            : base(id, createdAt, updateAt, isDeleted)
+            : base(id, createdAt, updatedAt, isDeleted)
         {
             Number = number;
             IssueDate = issueDate;

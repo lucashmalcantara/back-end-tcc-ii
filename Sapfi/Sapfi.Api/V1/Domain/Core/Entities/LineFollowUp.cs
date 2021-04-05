@@ -13,13 +13,13 @@ namespace Sapfi.Api.V1.Domain.Core.Entities
         public LineFollowUp(
             int id,
             DateTime createdAt,
-            DateTime? updateAt,
+            DateTime? updatedAt,
             bool isDeleted,
             int lineId, 
             string deviceToken, 
             int notifyWhen, 
             bool isNotified)
-            : base(id, createdAt, updateAt, isDeleted)
+            : base(id, createdAt, updatedAt, isDeleted)
         {
             LineId = lineId;
             DeviceToken = deviceToken;

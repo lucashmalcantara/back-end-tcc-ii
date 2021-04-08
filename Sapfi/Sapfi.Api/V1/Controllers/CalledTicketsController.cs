@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Controllers.Models.CalledTicket.Get;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -13,34 +15,26 @@ namespace Sapfi.Api.V1.Controllers
     public class CalledTicketsController : ControllerBase
     {
         private readonly ICalledTicketService _calledTicketService;
+        private readonly IMapper _mapper;
 
-        public CalledTicketsController(ICalledTicketService calledTicketService)
+        public CalledTicketsController(ICalledTicketService calledTicketService, IMapper mapper)
         {
             _calledTicketService = calledTicketService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCalledTicketModel))]
         public async Task<IActionResult> GetByCompanyId(int companyId)
         {
-            return Ok(new List<GetCalledTicketModel>()
-            {
-                new GetCalledTicketModel
-                {
-                    CalledAt = DateTime.Now,
-                    Number = "789"
-                },
-                new GetCalledTicketModel
-                {
-                    CalledAt = DateTime.Now.AddMinutes(-1),
-                    Number = "456"
-                },
-                new GetCalledTicketModel
-                {
-                    CalledAt = DateTime.Now.AddMinutes(-2),
-                    Number = "123"
-                }
-            });
+            var response = await _calledTicketService.GetByCompanyId(companyId);
+
+            if (response.HasError)
+                return BadRequest(response.ErrorResponse);
+
+            var getModel = _mapper.Map<ReadOnlyCollection<GetCalledTicketModel>>(response.Data);
+
+            return Ok(getModel);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.QuantityOfTicket).HasColumnName("quantity_of_ticket");
             builder.Property(x => x.WaitingTime).HasColumnName("waiting_time");
+            builder.Property(x => x.CompanyId).HasColumnName("company_id");
         }
     }
 }

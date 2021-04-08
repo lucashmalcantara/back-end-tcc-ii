@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Controllers.Models.Line.Get;
+using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers
@@ -9,16 +12,27 @@ namespace Sapfi.Api.V1.Controllers
     [Route("v{version:apiVersion}/[controller]")]
     public class LinesController : ControllerBase
     {
+        private readonly ILineService _lineService;
+        private readonly IMapper _mapper;
+
+        public LinesController(ILineService lineService, IMapper mapper)
+        {
+            _lineService = lineService;
+            _mapper = mapper;
+        }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLineModel))]
         public async Task<IActionResult> GetByCompanyId(int companyId)
         {
-            return Ok(new GetLineModel
-            {
-                Id = 1,
-                QuantityOfTicket = 15,
-                WaitingTime = 35
-            });
+            var response = await _lineService.GetByCompanyId(companyId);
+
+            if (response.HasError)
+                return BadRequest(response.ErrorResponse);
+
+            var getModel = _mapper.Map<ReadOnlyCollection<GetLineModel>>(response.Data);
+
+            return Ok(getModel);
         }
     }
 }

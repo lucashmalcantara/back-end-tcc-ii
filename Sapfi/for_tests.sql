@@ -108,3 +108,233 @@ values
 	'3000',
 	null
 );
+
+
+----------------------------------------------------
+-- LOAD CALLED TICKETS
+-----------------------------------------------------
+
+insert into called_ticket 
+(
+	id,
+	created_at,
+	updated_at,
+	is_deleted,
+	company_id,
+	"number" 
+)
+values
+(
+	1,
+	NOW(),
+	null,
+	false,
+	1,
+	'101'
+),
+(
+	2,
+	NOW(),
+	null,
+	false,
+	1,
+	'102'
+),
+(
+	3,
+	NOW(),
+	null,
+	false,
+	1,
+	'103'
+),
+(
+	4,
+	NOW(),
+	null,
+	false,
+	1,
+	'104'
+),
+(
+	5,
+	NOW(),
+	null,
+	false,
+	1,
+	'105'
+),
+(
+	6,
+	NOW(),
+	null,
+	false,
+	1,
+	'106'
+),
+(
+	7,
+	NOW(),
+	null,
+	false,
+	1,
+	'107'
+),
+(
+	8,
+	NOW(),
+	null,
+	false,
+	1,
+	'108'
+),
+(
+	9,
+	NOW(),
+	null,
+	false,
+	1,
+	'109'
+),
+(
+	10,
+	NOW(),
+	null,
+	false,
+	2,
+	'110'
+),
+(
+	11,
+	NOW(),
+	null,
+	false,
+	2,
+	'1'
+),
+(
+	12,
+	NOW(),
+	null,
+	false,
+	2,
+	'2'
+),
+
+(
+	13,
+	NOW(),
+	null,
+	false,
+	2,
+	'3'
+),
+
+(
+	14,
+	NOW(),
+	null,
+	false,
+	2,
+	'4'
+),
+(
+	15,
+	NOW(),
+	null,
+	false,
+	2,
+	'5'
+),
+(
+	16,
+	NOW(),
+	null,
+	false,
+	3,
+	'AN-01'
+),
+(
+	17,
+	NOW(),
+	null,
+	false,
+	3,
+	'AN-02'
+),
+
+(
+	18,
+	NOW(),
+	null,
+	false,
+	3,
+	'AN-03'
+),
+(
+	19,
+	NOW(),
+	null,
+	false,
+	3,
+	'AN-04'
+),
+(
+	20,
+	NOW(),
+	null,
+	false,
+	3,
+	'AP-01'
+),
+(
+	21,
+	NOW(),
+	null,
+	false,
+	3,
+	'AP-02'
+);
+
+----------------------------------------------------
+-- LOAD LINE
+-----------------------------------------------------
+
+insert into line
+(
+	id,
+	created_at,
+	updated_at,
+	is_deleted,
+	quantity_of_ticket,
+	waiting_time,
+	company_id
+)
+values
+(
+	1,
+	NOW(),
+	null,
+	false,
+	5,
+	20,
+	1
+),
+(
+	2,
+	NOW(),
+	null,
+	false,
+	6,
+	15,
+	2
+),
+(
+	3,
+	NOW(),
+	null,
+	false,
+	3,
+	10,
+	3
+);

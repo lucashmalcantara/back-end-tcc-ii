@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Controllers.Models.Line.Get;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Controllers

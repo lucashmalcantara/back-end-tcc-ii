@@ -2,8 +2,6 @@
 using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Core.Models;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 

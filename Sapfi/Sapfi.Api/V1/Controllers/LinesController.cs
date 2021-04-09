@@ -30,7 +30,7 @@ namespace Sapfi.Api.V1.Controllers
             if (response.HasError)
                 return BadRequest(response.ErrorResponse);
 
-            var getModel = _mapper.Map<ReadOnlyCollection<GetLineModel>>(response.Data);
+            var getModel = _mapper.Map<GetLineModel>(response.Data);
 
             return Ok(getModel);
         }

@@ -17,16 +17,16 @@ namespace Sapfi.Api.V1.Domain.Services
             _lineRepository = lineRepository;
         }
 
-        public async Task<DefaultResponse<IReadOnlyCollection<Line>>> GetByCompanyId(int companyId)
+        public async Task<DefaultResponse<Line>> GetByCompanyId(int companyId)
         {
             if (companyId <= 0)
             {
-                return DefaultResponse<IReadOnlyCollection<Line>>
+                return DefaultResponse<Line>
                     .Fail(new ErrorResponse(HttpStatusCode.BadRequest, "Código inválido", "Código de empresa inválido."));
             }
 
-            var line = await _lineRepository.GetAsync(c => c.CompanyId == companyId);
-            return DefaultResponse<IReadOnlyCollection<Line>>.Success(line);
+            var line = await _lineRepository.GetFirstAsync(c => c.CompanyId == companyId);
+            return DefaultResponse<Line>.Success(line);
         }
     }
 }

@@ -2,7 +2,7 @@
 using Sapfi.Api.V1.Domain.Entities;
 using System.Reflection;
 
-namespace Sapfi.Api.V1.Infrastructure.Persistence.Context
+namespace Sapfi.Api.V1.Infrastructure.Data.Context
 {
     public class SapfiDbContext : DbContext
     {

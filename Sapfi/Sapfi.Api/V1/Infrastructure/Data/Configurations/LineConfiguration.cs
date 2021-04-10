@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sapfi.Api.V1.Domain.Entities;
 using System;
 
-namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
+namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
 {
     public class LineConfiguration : IEntityTypeConfiguration<Line>
     {

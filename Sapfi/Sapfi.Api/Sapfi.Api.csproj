@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="V1\Infrastructure\Persistence\Repositories\Base\Interfaces\" />
+    <Folder Include="V1\Infrastructure\Data\Repositories\Base\Interfaces\" />
   </ItemGroup>
 
 

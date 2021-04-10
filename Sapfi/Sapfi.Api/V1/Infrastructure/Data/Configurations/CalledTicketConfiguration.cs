@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sapfi.Api.V1.Domain.Entities;
 
-namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
+namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
 {
-    public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
+    public class CalledTicketConfiguration : IEntityTypeConfiguration<CalledTicket>
     {
-        public void Configure(EntityTypeBuilder<Ticket> builder)
+        public void Configure(EntityTypeBuilder<CalledTicket> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
@@ -14,10 +14,8 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
             builder.Property(x => x.Number).HasColumnName("number");
-            builder.Property(x => x.IssueDate).HasColumnName("Issue_date").IsRequired();
-            builder.Property(x => x.LinePosition).HasColumnName("line_position").IsRequired();
-            builder.Property(x => x.WaitingTime).HasColumnName("waiting_time").IsRequired();
-            builder.Property(x => x.CompanyId).HasColumnName("company_id").IsRequired();
+            builder.Property(x => x.CalledAt).HasColumnName("called_at");
+            builder.Property(x => x.CompanyId).HasColumnName("company_id");
         }
     }
 }

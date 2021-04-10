@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base
+namespace Sapfi.Api.V1.Infrastructure.Data.Repositories.Base
 {
     public class EntityReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class, IEntity
     {

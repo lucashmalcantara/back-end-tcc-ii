@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
-using Sapfi.Api.V1.Infrastructure.Persistence.Context;
-using Sapfi.Api.V1.Infrastructure.Persistence.Repositories;
+using Sapfi.Api.V1.Infrastructure.Data.Context;
+using Sapfi.Api.V1.Infrastructure.Data.Repositories;
 
 namespace Sapfi.Api.V1.CrossCutting.IoC
 {

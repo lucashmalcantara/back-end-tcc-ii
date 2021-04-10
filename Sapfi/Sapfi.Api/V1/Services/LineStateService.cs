@@ -3,7 +3,6 @@ using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Models.LineState.Update;
-using System;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Services

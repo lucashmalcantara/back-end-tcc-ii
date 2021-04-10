@@ -6,7 +6,7 @@ CREATE DATABASE sapfi
 
 CREATE TABLE public.company
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE public.address
 
 CREATE TABLE public.notification
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
@@ -54,10 +54,11 @@ CREATE TABLE public.notification
 
 CREATE TABLE public.ticket
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
+    external_id character varying(75) NOT NULL,
     number character varying(25) NOT NULL,
     issue_date timestamp with time zone NOT NULL,
     line_position integer NOT NULL,
@@ -73,13 +74,12 @@ CREATE TABLE public.ticket
 
 CREATE TABLE public.ticket_follow_up
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
-    number character varying(25) NOT NULL,
-    device_token character varying(255) NOT NULL,
     ticket_id bigint NOT NULL,
+    device_token character varying(255) NOT NULL,
     CONSTRAINT pk_ticketfollowup PRIMARY KEY (id),
     CONSTRAINT fk_ticketfollowup_ticket FOREIGN KEY (ticket_id)
     REFERENCES public.ticket (id) MATCH SIMPLE
@@ -90,11 +90,13 @@ CREATE TABLE public.ticket_follow_up
 
 CREATE TABLE public.called_ticket
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
+    external_id character varying(75) NOT NULL,
     number character varying(25) NOT NULL,
+    called_at timestamp with time zone NOT NULL,
     company_id bigint NOT NULL,
     CONSTRAINT pk_calledticket PRIMARY KEY (id),
     CONSTRAINT fk_calledticket_company FOREIGN KEY (company_id)
@@ -112,9 +114,8 @@ CREATE TABLE public.line
     is_deleted boolean NOT NULL,
     quantity_of_ticket integer NOT NULL,
     waiting_time integer NOT NULL,
-    company_id bigint NOT NULL,
     CONSTRAINT pk_line PRIMARY KEY (id),
-    CONSTRAINT fk_line_company FOREIGN KEY (company_id)
+    CONSTRAINT fk_line_company FOREIGN KEY (id)
     REFERENCES public.company (id) MATCH SIMPLE
     ON UPDATE RESTRICT
     ON DELETE RESTRICT
@@ -123,7 +124,7 @@ CREATE TABLE public.line
 
 CREATE TABLE public.line_follow_up
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,

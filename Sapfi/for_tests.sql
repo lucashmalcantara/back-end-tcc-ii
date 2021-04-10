@@ -1,10 +1,23 @@
 ﻿-----------------------------------------------------
+-- DROP TABLE ORDER
+-----------------------------------------------------
+
+--DROP TABLE line_follow_up;
+--DROP TABLE line;
+--DROP TABLE called_ticket;
+--DROP TABLE ticket_follow_up;
+--DROP TABLE ticket;
+--DROP TABLE notification;
+--DROP TABLE address;
+--DROP TABLE company;
+
+
+-----------------------------------------------------
 -- LOAD COMPANY
 -----------------------------------------------------
 
 insert into company 
 (
-	id,
 	created_at,
 	updated_at,
 	is_deleted,
@@ -15,7 +28,6 @@ insert into company
 )
 values
 (
-	1,
 	NOW(),
 	null,
 	false,
@@ -25,7 +37,6 @@ values
 	'Jaqueline e Danilo Doces & Salgados Ltda'
 ),
 (
-	2,
 	NOW(),
 	null,
 	false,
@@ -35,7 +46,6 @@ values
 	'Andreia e Rosângela Alimentos Ltda'
 ),
 (
-	3,
 	NOW(),
 	null,
 	false,
@@ -116,183 +126,205 @@ values
 
 insert into called_ticket 
 (
-	id,
 	created_at,
 	updated_at,
 	is_deleted,
 	company_id,
-	"number" 
+	called_at,
+	number,
+	external_id
 )
 values
 (
-	1,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'101',
 	'101'
 ),
 (
-	2,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'102',
 	'102'
 ),
 (
-	3,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'103',
 	'103'
 ),
 (
-	4,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'104',
 	'104'
 ),
 (
-	5,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'105',
 	'105'
 ),
 (
-	6,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'106',
 	'106'
 ),
 (
-	7,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'107',
 	'107'
 ),
 (
-	8,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'108',
 	'108'
 ),
 (
-	9,
 	NOW(),
 	null,
 	false,
 	1,
+	NOW(),
+	'109',
 	'109'
 ),
 (
-	10,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'110',
 	'110'
 ),
 (
-	11,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'1',
 	'1'
 ),
 (
-	12,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'2',
 	'2'
 ),
 
 (
-	13,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'3',
 	'3'
 ),
 
 (
-	14,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'4',
 	'4'
 ),
 (
-	15,
 	NOW(),
 	null,
 	false,
 	2,
+	NOW(),
+	'5',
 	'5'
 ),
 (
-	16,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AN-01',
 	'AN-01'
 ),
 (
-	17,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AN-02',
 	'AN-02'
 ),
 
 (
-	18,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AN-03',
 	'AN-03'
 ),
 (
-	19,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AN-04',
 	'AN-04'
 ),
 (
-	20,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AP-01',
 	'AP-01'
 ),
 (
-	21,
 	NOW(),
 	null,
 	false,
 	3,
+	NOW(),
+	'AP-02',
 	'AP-02'
 );
 
@@ -307,8 +339,7 @@ insert into line
 	updated_at,
 	is_deleted,
 	quantity_of_ticket,
-	waiting_time,
-	company_id
+	waiting_time
 )
 values
 (
@@ -317,8 +348,7 @@ values
 	null,
 	false,
 	5,
-	20,
-	1
+	20
 ),
 (
 	2,
@@ -326,8 +356,7 @@ values
 	null,
 	false,
 	6,
-	15,
-	2
+	15
 ),
 (
 	3,
@@ -335,6 +364,5 @@ values
 	null,
 	false,
 	3,
-	10,
-	3
+	10
 );

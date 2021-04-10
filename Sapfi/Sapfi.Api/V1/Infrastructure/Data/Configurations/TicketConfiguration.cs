@@ -13,7 +13,8 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.CreatedAt).HasColumnName("created_at").IsRequired();
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
-            builder.Property(x => x.Number).HasColumnName("number");
+            builder.Property(x => x.ExternalId).HasColumnName("external_id").IsRequired();
+            builder.Property(x => x.Number).HasColumnName("number").IsRequired();
             builder.Property(x => x.IssueDate).HasColumnName("Issue_date").IsRequired();
             builder.Property(x => x.LinePosition).HasColumnName("line_position").IsRequired();
             builder.Property(x => x.WaitingTime).HasColumnName("waiting_time").IsRequired();

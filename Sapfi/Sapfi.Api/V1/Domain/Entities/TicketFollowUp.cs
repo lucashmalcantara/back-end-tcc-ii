@@ -5,7 +5,7 @@ namespace Sapfi.Api.V1.Domain.Entities
 {
     public class TicketFollowUp : BaseEntity
     {
-        public string Number { get; private set; }
+        public long TicketId { get; private set; }
         public string DeviceToken { get; private set; }
 
         public TicketFollowUp(
@@ -13,11 +13,11 @@ namespace Sapfi.Api.V1.Domain.Entities
             DateTime createdAt,
             DateTime? updatedAt,
             bool isDeleted,
-            string number, 
+            long ticketId, 
             string deviceToken)
             : base(id, createdAt, updatedAt, isDeleted)
         {
-            Number = number;
+            TicketId = ticketId;
             DeviceToken = deviceToken;
         }
     }

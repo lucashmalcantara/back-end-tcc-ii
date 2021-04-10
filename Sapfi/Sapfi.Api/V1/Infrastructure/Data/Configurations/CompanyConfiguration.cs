@@ -18,6 +18,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.Name).HasColumnName("name").IsRequired();
             builder.Property(x => x.TradingName).HasColumnName("trading_name").IsRequired();
             builder.HasOne(x => x.Address).WithOne(y => y.Company).HasForeignKey<Address>(y => y.Id);
+            builder.HasOne(x => x.Line).WithOne(y => y.Company).HasForeignKey<Line>(y => y.Id);
         }
     }
 }

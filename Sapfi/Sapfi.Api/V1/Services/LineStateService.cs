@@ -3,6 +3,8 @@ using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Models.LineState.Update;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Services
@@ -34,8 +36,16 @@ namespace Sapfi.Api.V1.Services
             var company = await _companyRepository.GetFirstAsync(c => c.ApiToken == companyToken);
 
             await UpdateLine(company.Id, lineStateModel.Line);
+            await UpdateCalledTickets(company.Id, lineStateModel.CalledTickets);
+
+            await _lineRepository.SaveAsync();
 
             return SimpleResult.Success();
+        }
+
+        private async Task UpdateCalledTickets(long companyId, IReadOnlyCollection<CalledTicketModel> calledTickets)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task UpdateLine(long companyId, LineModel lineModel)
@@ -53,7 +63,7 @@ namespace Sapfi.Api.V1.Services
             {
                 var newLine = new Line(
                     companyId,
-                    default, 
+                    default,
                     default,
                     false,
                     lineModel.QuantityOfTicket,
@@ -61,8 +71,6 @@ namespace Sapfi.Api.V1.Services
 
                 _lineRepository.Create(newLine);
             }
-
-            await _lineRepository.SaveAsync();
         }
     }
 }

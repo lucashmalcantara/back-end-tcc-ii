@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sapfi.Api.V1.Domain.Core.Entities.Interfaces;
-using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories.Base;
+using Sapfi.Api.V1.Domain.Entities.Interfaces;
+using Sapfi.Api.V1.Domain.Interfaces.Repositories.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

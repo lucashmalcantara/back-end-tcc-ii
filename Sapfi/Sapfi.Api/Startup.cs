@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Sapfi.Api.Swagger;
-using Sapfi.Api.V1.Infrastructure.IoC;
+using Sapfi.Api.V1.Application.ConfigureOptions;
+using Sapfi.Api.V1.CrossCutting.IoC;
 using System;
 
 namespace Sapfi.Api
@@ -44,9 +44,8 @@ namespace Sapfi.Api
             services.AddSwaggerGen();
 
             services.ConfigureOptions<ConfigureSwaggerOptions>();
-
-            RepositoriesBootstrapper.RegisterServices(services, Configuration);
-            RepositorysBootstrapper.RegisterServices(services, Configuration);
+            services.AddRepositoriesDependencies(Configuration);
+            services.AddServicesDependencies();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionDescriptionProvider)

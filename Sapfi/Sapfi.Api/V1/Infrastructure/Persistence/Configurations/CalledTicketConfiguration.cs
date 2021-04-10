@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Sapfi.Api.V1.Domain.Core.Entities;
+using Sapfi.Api.V1.Domain.Entities;
 
 namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
 {

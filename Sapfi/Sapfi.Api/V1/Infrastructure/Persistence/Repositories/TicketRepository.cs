@@ -1,5 +1,5 @@
-﻿using Sapfi.Api.V1.Domain.Core.Entities;
-using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories;
+﻿using Sapfi.Api.V1.Domain.Entities;
+using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Infrastructure.Persistence.Context;
 using Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base;
 

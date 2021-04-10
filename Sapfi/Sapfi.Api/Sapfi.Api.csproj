@@ -4,10 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>1f4f699b-9063-4632-91ef-05676cde04e8</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="V1\Application\Models\LineState\Post\PostLineStateModel.cs~RF1892d222.TMP" />
     <None Remove="V1\Domain\Core\Models\LineStateModel.cs~RF585799c.TMP" />
+    <None Remove="V1\Domain\Entities\Line.cs~RF1907ba99.TMP" />
   </ItemGroup>
 
   <ItemGroup>

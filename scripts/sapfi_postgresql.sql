@@ -112,9 +112,8 @@ CREATE TABLE public.line
     is_deleted boolean NOT NULL,
     quantity_of_ticket integer NOT NULL,
     waiting_time integer NOT NULL,
-    company_id bigint NOT NULL,
     CONSTRAINT pk_line PRIMARY KEY (id),
-    CONSTRAINT fk_line_company FOREIGN KEY (company_id)
+    CONSTRAINT fk_line_company FOREIGN KEY (id)
     REFERENCES public.company (id) MATCH SIMPLE
     ON UPDATE RESTRICT
     ON DELETE RESTRICT

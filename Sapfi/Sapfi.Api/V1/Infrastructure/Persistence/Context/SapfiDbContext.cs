@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sapfi.Api.V1.Domain.Core.Entities;
+using Sapfi.Api.V1.Domain.Entities;
 using System.Reflection;
 
 namespace Sapfi.Api.V1.Infrastructure.Persistence.Context

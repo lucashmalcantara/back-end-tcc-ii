@@ -2,7 +2,6 @@
 using Sapfi.Api.V1.Domain.Core.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Core.Models;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Domain.Services
@@ -15,16 +14,13 @@ namespace Sapfi.Api.V1.Domain.Services
             _lineRepository = lineRepository;
         }
 
-        public async Task<DefaultResponse<Line>> GetByCompanyId(int companyId)
+        public async Task<Result<Line>> GetByCompanyId(int companyId)
         {
             if (companyId <= 0)
-            {
-                return DefaultResponse<Line>
-                    .Fail(new ErrorResponse(HttpStatusCode.BadRequest, "Código inválido", "Código de empresa inválido."));
-            }
+                return Result<Line>.Fail(new Error("Código inválido", "Código de empresa inválido."));
 
             var line = await _lineRepository.GetFirstAsync(c => c.CompanyId == companyId);
-            return DefaultResponse<Line>.Success(line);
+            return Result<Line>.Success(line);
         }
     }
 }

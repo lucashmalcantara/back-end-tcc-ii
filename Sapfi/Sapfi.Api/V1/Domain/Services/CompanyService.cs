@@ -9,7 +9,7 @@ namespace Sapfi.Api.V1.Domain.Services
 {
     public class CompanyService : ICompanyService
     {
-        public async Task<DefaultResponse<IReadOnlyCollection<Company>>> Get(string country, string state)
+        public async Task<Result<IReadOnlyCollection<Company>>> Get(string country, string state)
         {
             throw new NotImplementedException();
         }

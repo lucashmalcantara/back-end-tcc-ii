@@ -8,7 +8,7 @@ namespace Sapfi.Api.V1.Domain.Services
 {
     public class TicketService : ITicketService
     {
-        public async Task<DefaultResponse<GetTicketModel>> Get(int companyId, string number)
+        public async Task<Result<GetTicketModel>> Get(int companyId, string number)
         {
             throw new NotImplementedException();
         }

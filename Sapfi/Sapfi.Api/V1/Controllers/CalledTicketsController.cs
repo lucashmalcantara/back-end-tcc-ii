@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Controllers.Models.CalledTicket.Get;
 using Sapfi.Api.V1.Domain.Core.Interfaces.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -27,12 +25,12 @@ namespace Sapfi.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCalledTicketModel))]
         public async Task<IActionResult> GetByCompanyId(int companyId)
         {
-            var response = await _calledTicketService.GetByCompanyId(companyId);
+            var result = await _calledTicketService.GetByCompanyId(companyId);
 
-            if (response.HasError)
-                return BadRequest(response.ErrorResponse);
+            if (result.HasError)
+                return BadRequest(result.Error);
 
-            var getModel = _mapper.Map<ReadOnlyCollection<GetCalledTicketModel>>(response.Data);
+            var getModel = _mapper.Map<ReadOnlyCollection<GetCalledTicketModel>>(result.Data);
 
             return Ok(getModel);
         }

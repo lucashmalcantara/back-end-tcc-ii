@@ -7,6 +7,6 @@ namespace Sapfi.Api.V1.Domain.Core.Interfaces.Services
 {
     public interface ICalledTicketService
     {
-        Task<DefaultResponse<IReadOnlyCollection<CalledTicket>>> GetByCompanyId(int companyId);
+        Task<Result<IReadOnlyCollection<CalledTicket>>> GetByCompanyId(int companyId);
     }
 }

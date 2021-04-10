@@ -5,6 +5,6 @@ namespace Sapfi.Api.V1.Domain.Core.Interfaces.Services
 {
     public interface ILineStateService
     {
-        Task Update(string companyToken, LineStateModel lineStateModel);
+        Task<SimpleResult> Update(string companyToken, LineStateModel lineStateModel);
     }
 }

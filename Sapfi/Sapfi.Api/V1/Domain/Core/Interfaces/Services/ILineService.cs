@@ -6,6 +6,6 @@ namespace Sapfi.Api.V1.Domain.Core.Interfaces.Services
 {
     public interface ILineService
     {
-        Task<DefaultResponse<Line>> GetByCompanyId(int companyId);
+        Task<Result<Line>> GetByCompanyId(int companyId);
     }
 }

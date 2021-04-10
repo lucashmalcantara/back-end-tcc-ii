@@ -24,12 +24,12 @@ namespace Sapfi.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLineModel))]
         public async Task<IActionResult> GetByCompanyId(int companyId)
         {
-            var response = await _lineService.GetByCompanyId(companyId);
+            var result = await _lineService.GetByCompanyId(companyId);
 
-            if (response.HasError)
-                return BadRequest(response.ErrorResponse);
+            if (result.HasError)
+                return BadRequest(result.Error);
 
-            var getModel = _mapper.Map<GetLineModel>(response.Data);
+            var getModel = _mapper.Map<GetLineModel>(result.Data);
 
             return Ok(getModel);
         }

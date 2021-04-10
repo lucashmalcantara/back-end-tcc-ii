@@ -10,14 +10,14 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            builder.Property(x => x.CreatedAt).HasColumnName("created_at").ValueGeneratedOnAdd();
+            builder.Property(x => x.CreatedAt).HasColumnName("created_at").IsRequired();
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
             builder.Property(x => x.Number).HasColumnName("number");
-            builder.Property(x => x.IssueDate).HasColumnName("Issue_date");
-            builder.Property(x => x.LinePosition).HasColumnName("line_position");
-            builder.Property(x => x.WaitingTime).HasColumnName("waiting_time");
-            builder.Property(x => x.CompanyId).HasColumnName("company_id");
+            builder.Property(x => x.IssueDate).HasColumnName("Issue_date").IsRequired();
+            builder.Property(x => x.LinePosition).HasColumnName("line_position").IsRequired();
+            builder.Property(x => x.WaitingTime).HasColumnName("waiting_time").IsRequired();
+            builder.Property(x => x.CompanyId).HasColumnName("company_id").IsRequired();
         }
     }
 }

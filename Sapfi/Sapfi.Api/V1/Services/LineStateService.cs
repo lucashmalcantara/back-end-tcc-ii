@@ -3,6 +3,7 @@ using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Models.LineState.Update;
+using System;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Services
@@ -52,15 +53,17 @@ namespace Sapfi.Api.V1.Services
             else
             {
                 var newLine = new Line(
-                    default,
+                    companyId,
                     default, 
                     default,
                     false,
                     lineModel.QuantityOfTicket,
                     lineModel.WaitingTime);
 
-                _lineRepository.Create(line);
+                _lineRepository.Create(newLine);
             }
+
+            await _lineRepository.SaveAsync();
         }
     }
 }

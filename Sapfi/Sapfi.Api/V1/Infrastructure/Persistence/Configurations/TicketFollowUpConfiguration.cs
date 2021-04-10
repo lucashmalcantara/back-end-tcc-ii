@@ -10,11 +10,11 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            builder.Property(x => x.CreatedAt).HasColumnName("created_at").ValueGeneratedOnAdd();
+            builder.Property(x => x.CreatedAt).HasColumnName("created_at").IsRequired();
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
-            builder.Property(x => x.Number).HasColumnName("number");
-            builder.Property(x => x.DeviceToken).HasColumnName("device_token");
+            builder.Property(x => x.Number).HasColumnName("number").IsRequired();
+            builder.Property(x => x.DeviceToken).HasColumnName("device_token").IsRequired();
         }
     }
 }

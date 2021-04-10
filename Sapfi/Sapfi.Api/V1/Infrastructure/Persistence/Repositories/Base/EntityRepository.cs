@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sapfi.Api.V1.Domain.Entities.Interfaces;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories.Base;
+using System;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base
@@ -12,11 +13,15 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base
         {
         }
 
-        public virtual void Create(TEntity entity) =>
+        public virtual void Create(TEntity entity)
+        {
+            entity.CreatedAt = DateTime.Now;
             _context.Set<TEntity>().Add(entity);
+        }
 
         public virtual void Update(TEntity entity)
         {
+            entity.UpdatedAt = DateTime.Now;
             _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }
@@ -29,6 +34,7 @@ namespace Sapfi.Api.V1.Infrastructure.Persistence.Repositories.Base
 
         public virtual void Delete(TEntity entity)
         {
+            entity.IsDeleted = true;
             _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }

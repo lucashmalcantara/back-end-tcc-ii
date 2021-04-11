@@ -32,5 +32,10 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
         /// </summary>
         /// <example>15</example>
         public int WaitingTime { get; set; }
+        /// <summary>
+        /// When the ticket was called. This value will be while the ticket was not called.
+        /// </summary>
+        /// <example>2021-04-10T14:30:00-03:00</example>
+        public DateTime? CalledAt { get; set; }
     }
 }

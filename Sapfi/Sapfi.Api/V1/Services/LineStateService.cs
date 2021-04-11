@@ -13,18 +13,15 @@ namespace Sapfi.Api.V1.Services
         private readonly ICompanyRepository _companyRepository;
         private readonly ILineRepository _lineRepository;
         private readonly ITicketRepository _ticketRepository;
-        private readonly ICalledTicketRepository _calledTicketRepository;
 
         public LineStateService(
             ICompanyRepository companyRepository,
             ILineRepository lineRepository,
-            ITicketRepository ticketRepository,
-            ICalledTicketRepository calledTicketRepository)
+            ITicketRepository ticketRepository)
         {
             _companyRepository = companyRepository;
             _lineRepository = lineRepository;
             _ticketRepository = ticketRepository;
-            _calledTicketRepository = calledTicketRepository;
         }
 
         public async Task<SimpleResult> Update(string companyToken, LineStateModel lineStateModel)
@@ -34,8 +31,13 @@ namespace Sapfi.Api.V1.Services
 
             var company = await _companyRepository.GetFirstAsync(c => c.ApiToken == companyToken);
 
+            if (company == null)
+            {
+                return SimpleResult.Fail(new Error("Empresa não encontrada",
+                    $"Não foi possíel encontrar a empresa a partir do Company Token '{companyToken}'"));
+            }
+
             await UpdateLine(company.Id, lineStateModel.Line);
-            await UpdateCalledTickets(company.Id, lineStateModel.CalledTickets);
             await UpdateTickets(company.Id, lineStateModel.Tickets);
 
             await _lineRepository.SaveAsync();
@@ -72,44 +74,10 @@ namespace Sapfi.Api.V1.Services
                     ticketModel.IssueDate,
                     ticketModel.LinePosition,
                     ticketModel.WaitingTime,
+                    ticketModel.CalledAt,
                     companyId);
 
                 _ticketRepository.Create(newTicket);
-            }
-        }
-
-        private async Task UpdateCalledTickets(long companyId, IReadOnlyCollection<CalledTicketModel> calledTicketModels)
-        {
-            foreach (var calledTicketModel in calledTicketModels)
-                await UpdateCalledTicket(companyId, calledTicketModel);
-        }
-
-        private async Task UpdateCalledTicket(long companyId, CalledTicketModel calledTicketModel)
-        {
-            var calledTicket = await _calledTicketRepository.GetFirstAsync(c =>
-                c.CompanyId == companyId && c.ExternalId == calledTicketModel.ExternalId);
-
-            if (calledTicket != null)
-            {
-                calledTicket.ExternalId = calledTicketModel.ExternalId;
-                calledTicket.Number = calledTicketModel.Number;
-                calledTicket.CalledAt = calledTicketModel.CalledAt;
-                _calledTicketRepository.Update(calledTicket);
-            }
-            else
-            {
-                var newCalledTicket =
-                     new CalledTicket(
-                         default,
-                         default,
-                         default,
-                         false,
-                         calledTicketModel.ExternalId,
-                         calledTicketModel.Number,
-                         calledTicketModel.CalledAt,
-                         companyId);
-
-                _calledTicketRepository.Create(newCalledTicket);
             }
         }
 

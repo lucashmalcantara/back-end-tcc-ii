@@ -12,10 +12,6 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
         /// </summary>
         public IReadOnlyCollection<PostLineStateTicketModel> Tickets { get; set; }
         /// <summary>
-        /// A list of called tickes.
-        /// </summary>
-        public IReadOnlyCollection<PostLineStateCalledTicketModel> CalledTickets { get; set; }
-        /// <summary>
         /// The company line.
         /// </summary>
         public PostLineStateLineModel Line { get; set; }

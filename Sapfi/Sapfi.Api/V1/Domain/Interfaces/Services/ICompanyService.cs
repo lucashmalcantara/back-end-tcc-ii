@@ -7,6 +7,6 @@ namespace Sapfi.Api.V1.Domain.Interfaces.Services
 {
     public interface ICompanyService
     {
-        Task<Result<IReadOnlyCollection<Company>>> Get(string country, string state);
+        Task<Result<IReadOnlyCollection<Company>>> Get(string country, string state, string city);
     }
 }

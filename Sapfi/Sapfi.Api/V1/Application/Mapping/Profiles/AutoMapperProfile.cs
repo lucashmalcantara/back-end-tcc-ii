@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Sapfi.Api.V1.Application.Models.CalledTicket.Get;
+using Sapfi.Api.V1.Application.Models.Company.Get;
 using Sapfi.Api.V1.Application.Models.Line.Get;
 using Sapfi.Api.V1.Application.Models.LineState.Post;
 using Sapfi.Api.V1.Application.Models.Ticket.Get;
@@ -19,6 +20,8 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
             CreateMap<Ticket, GetTicketModel>();
+            CreateMap<Company, GetCompanyModel>();
+            CreateMap<Address, GetCompanyAddressModel>();
         }
     }
 }

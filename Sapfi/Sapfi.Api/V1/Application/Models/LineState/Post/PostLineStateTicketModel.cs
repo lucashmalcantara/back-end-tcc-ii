@@ -8,6 +8,11 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
     public class PostLineStateTicketModel
     {
         /// <summary>
+        /// The ticket identification in the company.
+        /// </summary>
+        /// <example>987654</example>
+        public string ExternalId { get; set; }
+        /// <summary>
         /// Number of the ticket.
         /// </summary>
         /// <example>ABC123</example>

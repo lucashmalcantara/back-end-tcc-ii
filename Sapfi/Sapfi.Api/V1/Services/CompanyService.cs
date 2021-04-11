@@ -11,6 +11,7 @@ namespace Sapfi.Api.V1.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _companyRepository;
+
         public CompanyService(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
@@ -21,17 +22,19 @@ namespace Sapfi.Api.V1.Services
             if (string.IsNullOrWhiteSpace(country))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "País inválido."));
+                    .Fail(new Error("Código inválido", "O país informado não é valido."));
             }
+
             if (string.IsNullOrWhiteSpace(state))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "Estado inválido."));
+                    .Fail(new Error("Código inválido", "O estado informado não é valido."));
             }
+
             if (string.IsNullOrWhiteSpace(city))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "Cidade inválida."));
+                    .Fail(new Error("Código inválido", "A cidade informada não é valida."));
             }
 
             var company = await _companyRepository.GetAsync(

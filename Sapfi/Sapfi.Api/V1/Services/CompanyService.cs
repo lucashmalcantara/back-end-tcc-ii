@@ -22,19 +22,19 @@ namespace Sapfi.Api.V1.Services
             if (string.IsNullOrWhiteSpace(country))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "O país informado não é valido."));
+                    .Fail(new Error("Campo inválido", "O país informado não é valido."));
             }
 
             if (string.IsNullOrWhiteSpace(state))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "O estado informado não é valido."));
+                    .Fail(new Error("Campo inválido", "O estado informado não é valido."));
             }
 
             if (string.IsNullOrWhiteSpace(city))
             {
                 return Result<IReadOnlyCollection<Company>>
-                    .Fail(new Error("Código inválido", "A cidade informada não é valida."));
+                    .Fail(new Error("Campo inválido", "A cidade informada não é valida."));
             }
 
             var company = await _companyRepository.GetAsync(

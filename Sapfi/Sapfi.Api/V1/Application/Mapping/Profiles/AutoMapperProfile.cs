@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Sapfi.Api.V1.Application.Models.Line.Get;
 using Sapfi.Api.V1.Application.Models.LineState.Post;
+using Sapfi.Api.V1.Application.Models.Ticket.Get;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Models.LineState.Update;
 
@@ -14,6 +15,7 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<PostLineStateModel, LineStateModel>();
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
+            CreateMap<Ticket, GetTicketModel>();
         }
     }
 }

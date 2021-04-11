@@ -63,6 +63,7 @@ CREATE TABLE public.ticket
     issue_date timestamp with time zone NOT NULL,
     line_position integer NOT NULL,
     waiting_time integer NOT NULL,
+    called_at timestamp with time zone,
     company_id bigint NOT NULL,
     CONSTRAINT pk_ticket PRIMARY KEY (id),
     CONSTRAINT fk_ticket_company FOREIGN KEY (company_id)
@@ -83,24 +84,6 @@ CREATE TABLE public.ticket_follow_up
     CONSTRAINT pk_ticketfollowup PRIMARY KEY (id),
     CONSTRAINT fk_ticketfollowup_ticket FOREIGN KEY (ticket_id)
     REFERENCES public.ticket (id) MATCH SIMPLE
-    ON UPDATE RESTRICT
-    ON DELETE RESTRICT
-    NOT VALID
-);
-
-CREATE TABLE public.called_ticket
-(
-    id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
-    is_deleted boolean NOT NULL,
-    external_id character varying(75) NOT NULL,
-    number character varying(25) NOT NULL,
-    called_at timestamp with time zone NOT NULL,
-    company_id bigint NOT NULL,
-    CONSTRAINT pk_calledticket PRIMARY KEY (id),
-    CONSTRAINT fk_calledticket_company FOREIGN KEY (company_id)
-    REFERENCES public.company (id) MATCH SIMPLE
     ON UPDATE RESTRICT
     ON DELETE RESTRICT
     NOT VALID

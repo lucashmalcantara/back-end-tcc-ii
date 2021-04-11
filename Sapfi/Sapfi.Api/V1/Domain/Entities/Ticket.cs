@@ -8,9 +8,10 @@ namespace Sapfi.Api.V1.Domain.Entities
         public string ExternalId { get; private set; }
         public string Number { get; private set; }
         public DateTime IssueDate { get; private set; }
-        public int LinePosition { get; private set; }
-        public int WaitingTime { get; private set; }
-        public int CompanyId { get; private set; }
+        public int LinePosition { get; set; }
+        public int WaitingTime { get; set; }
+        public DateTime? CalledAt { get; set; }
+        public long CompanyId { get; private set; }
 
         public Ticket(
             long id,
@@ -22,7 +23,8 @@ namespace Sapfi.Api.V1.Domain.Entities
             DateTime issueDate,
             int linePosition,
             int waitingTime,
-            int companyId)
+            DateTime? calledAt,
+            long companyId)
             : base(id, createdAt, updatedAt, isDeleted)
         {
             ExternalId = externalId;
@@ -30,6 +32,7 @@ namespace Sapfi.Api.V1.Domain.Entities
             IssueDate = issueDate;
             LinePosition = linePosition;
             WaitingTime = waitingTime;
+            CalledAt = calledAt;
             CompanyId = companyId;
         }
     }

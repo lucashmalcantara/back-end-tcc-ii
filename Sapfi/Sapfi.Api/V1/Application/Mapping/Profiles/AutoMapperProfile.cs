@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Sapfi.Api.V1.Application.Models.CalledTicket.Get;
 using Sapfi.Api.V1.Application.Models.Line.Get;
 using Sapfi.Api.V1.Application.Models.LineState.Post;
 using Sapfi.Api.V1.Application.Models.Ticket.Get;
@@ -12,13 +11,12 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<CalledTicket, GetCalledTicketModel>();
             CreateMap<Line, GetLineModel>();
             CreateMap<PostLineStateModel, LineStateModel>();
-            CreateMap<PostLineStateCalledTicketModel, CalledTicketModel>();
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
             CreateMap<Ticket, GetTicketModel>();
+            CreateMap<Ticket, GetCalledTicketModel>();
         }
     }
 }

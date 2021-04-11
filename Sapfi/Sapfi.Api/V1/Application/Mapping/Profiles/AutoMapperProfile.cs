@@ -16,6 +16,7 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
             CreateMap<Ticket, GetTicketModel>();
+            CreateMap<Ticket, GetCalledTicketModel>();
         }
     }
 }

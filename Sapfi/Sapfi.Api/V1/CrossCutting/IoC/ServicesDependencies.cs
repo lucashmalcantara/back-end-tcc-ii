@@ -8,7 +8,6 @@ namespace Sapfi.Api.V1.CrossCutting.IoC
     {
         public static void AddServicesDependencies(this IServiceCollection services)
         {
-            services.AddScoped<ICalledTicketService, CalledTicketService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ILineFollowUpService, LineFollowUpService>();
             services.AddScoped<ILineService, LineService>();

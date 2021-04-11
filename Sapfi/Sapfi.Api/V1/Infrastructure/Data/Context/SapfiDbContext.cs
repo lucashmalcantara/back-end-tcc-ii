@@ -15,7 +15,6 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Context
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Entity<Address>().ToTable("address").HasQueryFilter(p => !p.IsDeleted);
-            builder.Entity<CalledTicket>().ToTable("called_ticket").HasQueryFilter(p => !p.IsDeleted);
             builder.Entity<Company>().ToTable("company").HasQueryFilter(p => !p.IsDeleted);
             builder.Entity<Line>().ToTable("line").HasQueryFilter(p => !p.IsDeleted);
             builder.Entity<LineFollowUp>().ToTable("line_follow_up").HasQueryFilter(p => !p.IsDeleted);

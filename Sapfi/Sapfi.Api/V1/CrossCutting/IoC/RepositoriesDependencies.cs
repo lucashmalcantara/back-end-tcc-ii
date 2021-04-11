@@ -11,7 +11,6 @@ namespace Sapfi.Api.V1.CrossCutting.IoC
     {
         public static void AddRepositoriesDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ICalledTicketRepository, CalledTicketRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ILineFollowUpRepository, LineFollowUpRepository>();
             services.AddScoped<ILineRepository, LineRepository>();

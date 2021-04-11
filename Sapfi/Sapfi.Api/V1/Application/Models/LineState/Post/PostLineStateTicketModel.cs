@@ -8,6 +8,11 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
     public class PostLineStateTicketModel
     {
         /// <summary>
+        /// The ticket identification in the company.
+        /// </summary>
+        /// <example>987654</example>
+        public string ExternalId { get; set; }
+        /// <summary>
         /// Number of the ticket.
         /// </summary>
         /// <example>ABC123</example>
@@ -27,5 +32,10 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
         /// </summary>
         /// <example>15</example>
         public int WaitingTime { get; set; }
+        /// <summary>
+        /// When the ticket was called. This value will be while the ticket was not called.
+        /// </summary>
+        /// <example>2021-04-10T14:30:00-03:00</example>
+        public DateTime? CalledAt { get; set; }
     }
 }

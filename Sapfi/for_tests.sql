@@ -156,3 +156,46 @@ values
 	3,
 	10
 );
+
+----------------------------------------------------
+-- LOAD TICKET
+-----------------------------------------------------
+
+insert into ticket 
+(
+	id,
+	created_at,
+	updated_at,
+	is_deleted,
+	company_id,
+	external_id,
+	issue_date,
+	line_position,
+	"number",
+	waiting_time
+)
+values
+(
+	1,
+	NOW(),
+	null,
+	false,
+	1,
+	'1',
+	NOW(),
+	1,
+	'001',
+	5
+),
+(
+	2,
+	NOW(),
+	null,
+	false,
+	1,
+	'2',
+	NOW(),
+	1,
+	'002',
+	12
+);

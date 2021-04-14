@@ -24,9 +24,9 @@ namespace Sapfi.Api.V1.Services
             if (string.IsNullOrWhiteSpace(ticketFollowUp.DeviceToken))
                 return SimpleResult.Fail(new Error("Device Token inválido", "O valor do Device Token é inválido"));
 
-            bool ExistTicketFollowUp = await ExistsTicketFollowUp(ticketFollowUp.TicketId);
+            bool ticketFollowUpExists = await TicketFollowUpExists(ticketFollowUp.TicketId);
 
-            if (ExistTicketFollowUp)
+            if (ticketFollowUpExists)
                 return SimpleResult.Fail(new Error("Ticket já cadastrado", "O ticket já foi cadastrado anteriormente"));
 
             _ticketFollowUpRepository.Create(ticketFollowUp);
@@ -42,6 +42,6 @@ namespace Sapfi.Api.V1.Services
             throw new NotImplementedException();
         }
 
-        private async Task<bool> ExistsTicketFollowUp(long ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);
+        private async Task<bool> TicketFollowUpExists(long ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);
     }
 }

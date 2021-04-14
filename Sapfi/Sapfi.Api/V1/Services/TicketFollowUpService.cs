@@ -2,7 +2,6 @@
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
-using Sapfi.Api.V1.Domain.Models.TicketFollowUp.Create;
 using System;
 using System.Threading.Tasks;
 
@@ -17,7 +16,7 @@ namespace Sapfi.Api.V1.Services
             _ticketFollowUpRepository = ticketFollowUpRepository;
         }
 
-        public async Task<SimpleResult> Create(TicketFollowUpModel ticketFollowUp)
+        public async Task<SimpleResult> Create(TicketFollowUp ticketFollowUp)
         {
             if (ticketFollowUp.TicketId <= 0)
                 return SimpleResult.Fail(new Error("Ticket inválido", "O valor do Ticket é inválido"));
@@ -25,19 +24,12 @@ namespace Sapfi.Api.V1.Services
             if (string.IsNullOrWhiteSpace(ticketFollowUp.DeviceToken))
                 return SimpleResult.Fail(new Error("Device Token inválido", "O valor do Device Token é inválido"));
 
-            if (await ExistsTicketFollowUp(ticketFollowUp.TicketId))
+            bool ExistTicketFollowUp = await ExistsTicketFollowUp(ticketFollowUp.TicketId);
+
+            if (ExistTicketFollowUp)
                 return SimpleResult.Fail(new Error("Ticket já cadastrado", "O ticket já foi cadastrado anteriormente"));
 
-
-            var newTicketFollowUp = new TicketFollowUp(
-                default,
-                default,
-                default,
-                false,
-                ticketFollowUp.TicketId,
-                ticketFollowUp.DeviceToken);
-
-            _ticketFollowUpRepository.Create(newTicketFollowUp);
+            _ticketFollowUpRepository.Create(ticketFollowUp);
 
             await _ticketFollowUpRepository.SaveAsync();
 
@@ -50,6 +42,6 @@ namespace Sapfi.Api.V1.Services
             throw new NotImplementedException();
         }
 
-        private async Task<bool> ExistsTicketFollowUp(int ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);
+        private async Task<bool> ExistsTicketFollowUp(long ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);
     }
 }

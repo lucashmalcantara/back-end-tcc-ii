@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Sapfi.Api.V1.Application.Models.Company.Get;
 using Sapfi.Api.V1.Application.Models.Line.Get;
+using Sapfi.Api.V1.Application.Models.LineFollowUp.Post;
 using Sapfi.Api.V1.Application.Models.LineState.Post;
 using Sapfi.Api.V1.Application.Models.Ticket.Get;
 using Sapfi.Api.V1.Application.Models.TicketFollowUp.Post;
@@ -21,6 +22,7 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<Company, GetCompanyModel>();
             CreateMap<Address, GetCompanyAddressModel>();
             CreateMap<PostTicketFollowUpModel, TicketFollowUp>().ConstructUsing(t => new TicketFollowUp(default, default, default, false, t.TicketId, t.DeviceToken));
+            CreateMap<PostLineFollowUpModel, LineFollowUp>().ConstructUsing(l => new LineFollowUp(default, default, default, false, l.LineId, l.DeviceToken, l.NotifyWhen, default));
         }
     }
 }

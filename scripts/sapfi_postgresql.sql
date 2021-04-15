@@ -114,6 +114,7 @@ CREATE TABLE public.line_follow_up
     device_token character varying(255) NOT NULL,
     notify_when integer NOT NULL,
     line_id bigint NOT NULL,
+    is_notified boolean NOT NULL,
     CONSTRAINT pk_linefollowup PRIMARY KEY (id),
     CONSTRAINT fk_linefollowup_company FOREIGN KEY (line_id)
     REFERENCES public.line (id) MATCH SIMPLE

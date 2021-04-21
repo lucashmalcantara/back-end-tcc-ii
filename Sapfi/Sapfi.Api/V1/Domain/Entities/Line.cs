@@ -5,7 +5,7 @@ namespace Sapfi.Api.V1.Domain.Entities
 {
     public class Line : BaseEntity
     {
-        public int QuantityOfTicket { get; set; }
+        public int NumberOfTickets { get; set; }
         public int WaitingTime { get; set; }
         public Company Company { get; set; }
         public Line(
@@ -13,11 +13,11 @@ namespace Sapfi.Api.V1.Domain.Entities
             DateTime createdAt,
             DateTime? updatedAt,
             bool isDeleted,
-            int quantityOfTicket,
+            int numberOfTickets,
             int waitingTime)
             : base(id, createdAt, updatedAt, isDeleted)
         {
-            QuantityOfTicket = quantityOfTicket;
+            NumberOfTickets = numberOfTickets;
             WaitingTime = waitingTime;
         }
     }

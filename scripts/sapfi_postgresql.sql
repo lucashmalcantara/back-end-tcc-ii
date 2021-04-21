@@ -1,9 +1,3 @@
-CREATE DATABASE sapfi
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    CONNECTION LIMIT = -1;
-
 CREATE TABLE public.company
 (
     id bigserial NOT NULL,
@@ -11,6 +5,7 @@ CREATE TABLE public.company
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
     api_token character(36) NOT NULL,
+    friendly_human_code character(4) NOT NULL,
     document character(14),
     name character varying(150) NOT NULL,
     trading_name character varying(75) NOT NULL,
@@ -49,6 +44,7 @@ CREATE TABLE public.notification
     title character varying(75) NOT NULL,
     body character varying(255) NOT NULL,
     device_token character varying(255) NOT NULL,
+    is_sent boolean NOT NULL DEFAULT false,
     CONSTRAINT pk_notification PRIMARY KEY (id)
 );
 
@@ -81,6 +77,7 @@ CREATE TABLE public.ticket_follow_up
     is_deleted boolean NOT NULL,
     ticket_id bigint NOT NULL,
     device_token character varying(255) NOT NULL,
+    is_notified boolean NOT NULL DEFAULT false,
     CONSTRAINT pk_ticketfollowup PRIMARY KEY (id),
     CONSTRAINT fk_ticketfollowup_ticket FOREIGN KEY (ticket_id)
     REFERENCES public.ticket (id) MATCH SIMPLE
@@ -95,7 +92,7 @@ CREATE TABLE public.line
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone,
     is_deleted boolean NOT NULL,
-    quantity_of_ticket integer NOT NULL,
+    number_of_tickets integer NOT NULL,
     waiting_time integer NOT NULL,
     CONSTRAINT pk_line PRIMARY KEY (id),
     CONSTRAINT fk_line_company FOREIGN KEY (id)
@@ -114,7 +111,7 @@ CREATE TABLE public.line_follow_up
     device_token character varying(255) NOT NULL,
     notify_when integer NOT NULL,
     line_id bigint NOT NULL,
-    is_notified boolean NOT NULL,
+    is_notified boolean NOT NULL DEFAULT false,
     CONSTRAINT pk_linefollowup PRIMARY KEY (id),
     CONSTRAINT fk_linefollowup_company FOREIGN KEY (line_id)
     REFERENCES public.line (id) MATCH SIMPLE

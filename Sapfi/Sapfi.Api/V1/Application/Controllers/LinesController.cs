@@ -22,7 +22,7 @@ namespace Sapfi.Api.V1.Application.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetLineModel))]
-        public async Task<IActionResult> GetByCompanyId(int companyId)
+        public async Task<IActionResult> GetByCompanyId([FromQuery]int companyId)
         {
             var result = await _lineService.GetByCompanyId(companyId);
 

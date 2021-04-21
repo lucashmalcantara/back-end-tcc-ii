@@ -16,7 +16,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.Title).HasColumnName("title").IsRequired();
             builder.Property(x => x.Body).HasColumnName("body").IsRequired();
             builder.Property(x => x.DeviceToken).HasColumnName("device_token").IsRequired();
-            builder.Property(x => x.IsDelivered).HasColumnName("is_delivered").IsRequired();
+            builder.Property(x => x.IsSent).HasColumnName("is_sent").IsRequired();
         }
     }
 }

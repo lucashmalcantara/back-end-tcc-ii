@@ -20,9 +20,10 @@ namespace Sapfi.Api.V1.Application.Controllers
             _companyService = companyService;
             _mapper = mapper;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<GetCompanyModel>))]
-        public async Task<IActionResult> GetByAddress(string country, string state, string city)
+        public async Task<IActionResult> GetByAddress([FromQuery]string country, [FromQuery] string state, [FromQuery] string city)
         {
             var result = await _companyService.Get(country, state, city);
 

@@ -7,6 +7,7 @@ namespace Sapfi.Api.V1.Domain.Entities
     {
         public long TicketId { get; private set; }
         public string DeviceToken { get; private set; }
+        public bool IsNotified { get; private set; }
 
         public TicketFollowUp(
             long id,
@@ -14,11 +15,13 @@ namespace Sapfi.Api.V1.Domain.Entities
             DateTime? updatedAt,
             bool isDeleted,
             long ticketId, 
-            string deviceToken)
+            string deviceToken,
+            bool isNotified)
             : base(id, createdAt, updatedAt, isDeleted)
         {
             TicketId = ticketId;
             DeviceToken = deviceToken;
+            IsNotified = isNotified;
         }
     }
 }

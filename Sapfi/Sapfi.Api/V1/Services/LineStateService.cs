@@ -87,7 +87,7 @@ namespace Sapfi.Api.V1.Services
 
             if (line != null)
             {
-                line.QuantityOfTicket = lineModel.QuantityOfTicket;
+                line.NumberOfTickets = lineModel.QuantityOfTicket;
                 line.WaitingTime = lineModel.WaitingTime;
 
                 _lineRepository.Update(line);

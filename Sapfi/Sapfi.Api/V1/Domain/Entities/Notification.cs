@@ -8,7 +8,7 @@ namespace Sapfi.Api.V1.Domain.Entities
         public string Title { get; private set; }
         public string Body { get; private set; }
         public string DeviceToken { get; private set; }
-        public bool IsDelivered { get; private set; }
+        public bool IsSent { get; private set; }
 
         public Notification(
             long id, 
@@ -18,13 +18,13 @@ namespace Sapfi.Api.V1.Domain.Entities
             string title, 
             string body, 
             string deviceToken, 
-            bool isDelivered) 
+            bool isSent) 
             : base(id, createdAt, updatedAt, isDeleted)
         {
             Title = title;
             Body = body;
             DeviceToken = deviceToken;
-            IsDelivered = isDelivered;
+            IsSent = isSent;
         }
     }
 }

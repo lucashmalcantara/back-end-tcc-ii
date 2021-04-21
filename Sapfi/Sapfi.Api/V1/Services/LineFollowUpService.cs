@@ -27,7 +27,7 @@ namespace Sapfi.Api.V1.Services
             bool lineFollowUpExists = await LineFollowUpExists(lineFollowUp.LineId, lineFollowUp.DeviceToken);
 
             if (lineFollowUpExists)
-                return SimpleResult.Fail(new Error("Alerta já cadastrado", "O alerta para este Line ID e Device Token já foi cadastrado anteriormente"));
+                return SimpleResult.Success();
 
             _lineFollowUpRepository.Create(lineFollowUp);
 

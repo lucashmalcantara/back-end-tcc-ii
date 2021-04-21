@@ -132,7 +132,7 @@ insert into line
 	created_at,
 	updated_at,
 	is_deleted,
-	quantity_of_ticket,
+	number_of_tickets,
 	waiting_time
 )
 values

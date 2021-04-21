@@ -19,10 +19,11 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
             CreateMap<Ticket, GetTicketModel>();
+            CreateMap<Ticket, GetCalledTicketModel>();
             CreateMap<Company, GetCompanyModel>();
             CreateMap<Address, GetCompanyAddressModel>();
-            CreateMap<PostTicketFollowUpModel, TicketFollowUp>().ConstructUsing(t => new TicketFollowUp(default, default, default, false, t.TicketId, t.DeviceToken));
-            CreateMap<PostLineFollowUpModel, LineFollowUp>().ConstructUsing(l => new LineFollowUp(default, default, default, false, l.LineId, l.DeviceToken, l.NotifyWhen, default));
+            CreateMap<PostTicketFollowUpModel, TicketFollowUp>().ConstructUsing(t => new TicketFollowUp(default, default, default, default, t.TicketId, t.DeviceToken, default));
+            CreateMap<PostLineFollowUpModel, LineFollowUp>().ConstructUsing(l => new LineFollowUp(default, default, default, default, l.LineId, l.DeviceToken, l.NotifyWhen, default));
         }
     }
 }

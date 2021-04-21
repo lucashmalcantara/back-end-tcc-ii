@@ -17,18 +17,28 @@ namespace Sapfi.Api.V1.Services
             _ticketRepository = ticketRepository;
         }
 
-        public async Task<Result<Ticket>> Get(int companyId, string number)
+        public async Task<Result<Ticket>> GetById(long id)
         {
-            if (companyId <= 0)
-                return Result<Ticket>.Fail(new Error("Código inválido", "Código de empresa inválido."));
+            if (id <= 0)
+                return Result<Ticket>.Fail(new Error("Código inválido", "Código de ticket inválido."));
+
+            var ticket = await _ticketRepository.GetFirstAsync(t => t.Id == id);
+
+            return Result<Ticket>.Success(ticket);
+        }
+
+        public async Task<Result<Ticket>> Get(string friendlyHumanCode, string number)
+        {
+            if (string.IsNullOrWhiteSpace(friendlyHumanCode))
+                return Result<Ticket>.Fail(new Error("Código inválido", "Informe um código de estabelecimento válido."));
 
             if (string.IsNullOrWhiteSpace(number))
-                return Result<Ticket>.Fail(new Error("Código inválido", "Código de ticket inválido."));
+                return Result<Ticket>.Fail(new Error("Ticket inválido", "Informe um número de ticket válido."));
 
             var last24hours = DateTime.Now.AddDays(-1);
 
             var ticket = await _ticketRepository.GetFirstAsync(
-                filter: t => t.CompanyId == companyId && t.Number == number && t.IssueDate >= last24hours,
+                filter: t => t.Company.FriendlyHumanCode == friendlyHumanCode && t.Number == number && t.IssueDate >= last24hours,
                 orderBy: t => t.OrderByDescending(t => t.IssueDate));
 
             return Result<Ticket>.Success(ticket);

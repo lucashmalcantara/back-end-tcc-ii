@@ -10,5 +10,6 @@ namespace Sapfi.Api.V1.Application.Models.Ticket.Get
         public int LinePosition { get; set; }
         public int WaitingTime { get; set; }
         public DateTime? CalledAt { get; set; }
+        public long CompanyId { get; set; }
     }
 }

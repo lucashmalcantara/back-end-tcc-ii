@@ -1,5 +1,6 @@
 ﻿using Sapfi.Api.V1.Domain.Entities.Base;
 using System;
+using System.Collections.Generic;
 
 namespace Sapfi.Api.V1.Domain.Entities
 {
@@ -9,8 +10,10 @@ namespace Sapfi.Api.V1.Domain.Entities
         public string Document { get; private set; }
         public string Name { get; private set; }
         public string TradingName { get; private set; }
+        public string FriendlyHumanCode { get; private set; }
         public Address Address { get; set; }
         public Line Line { get; set; }
+        public List<Ticket> Tickets { get; set; }
 
         public Company(
             long id,
@@ -20,13 +23,15 @@ namespace Sapfi.Api.V1.Domain.Entities
             string apiToken,
             string document,
             string name,
-            string tradingName)
+            string tradingName,
+            string friendlyHumanCode)
             : base(id, createdAt, updatedAt, isDeleted)
         {
             ApiToken = apiToken;
             Document = document;
             Name = name;
             TradingName = tradingName;
+            FriendlyHumanCode = friendlyHumanCode;
         }
     }
 }

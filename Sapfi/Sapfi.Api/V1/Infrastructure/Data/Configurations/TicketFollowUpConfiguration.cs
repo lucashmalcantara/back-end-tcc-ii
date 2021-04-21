@@ -15,6 +15,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
             builder.Property(x => x.TicketId).HasColumnName("ticket_id").IsRequired();
             builder.Property(x => x.DeviceToken).HasColumnName("device_token").IsRequired();
+            builder.Property(x => x.IsNotified).HasColumnName("is_notified").IsRequired();
         }
     }
 }

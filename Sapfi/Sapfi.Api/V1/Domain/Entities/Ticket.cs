@@ -12,6 +12,7 @@ namespace Sapfi.Api.V1.Domain.Entities
         public int WaitingTime { get; set; }
         public DateTime? CalledAt { get; set; }
         public long CompanyId { get; private set; }
+        public Company Company { get; set; }
 
         public Ticket(
             long id,

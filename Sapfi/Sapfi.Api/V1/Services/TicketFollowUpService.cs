@@ -27,7 +27,7 @@ namespace Sapfi.Api.V1.Services
             bool ticketFollowUpExists = await TicketFollowUpExists(ticketFollowUp.TicketId);
 
             if (ticketFollowUpExists)
-                return SimpleResult.Fail(new Error("Ticket já cadastrado", "O ticket já foi cadastrado anteriormente"));
+                return SimpleResult.Success();
 
             _ticketFollowUpRepository.Create(ticketFollowUp);
 

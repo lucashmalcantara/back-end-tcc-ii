@@ -60,6 +60,7 @@ namespace Sapfi.Api.V1.Services
             {
                 ticket.LinePosition = ticketModel.LinePosition;
                 ticket.WaitingTime = ticketModel.WaitingTime;
+                ticket.CalledAt = ticketModel.CalledAt;
                 _ticketRepository.Update(ticket);
             }
             else

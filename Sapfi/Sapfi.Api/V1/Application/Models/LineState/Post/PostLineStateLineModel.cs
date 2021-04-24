@@ -6,10 +6,10 @@
     public class PostLineStateLineModel
     {
         /// <summary>
-        /// Quantity of people waiting in the line.
+        /// Number of people waiting in the line.
         /// </summary>
         /// <example>5</example>
-        public int QuantityOfTicket { get; set; }
+        public int NumberOfTickets { get; set; }
         /// <summary>
         /// Minutes needed to be attended.
         /// </summary>

@@ -7,6 +7,6 @@ namespace Sapfi.Api.V1.Domain.Interfaces.Services
     public interface ILineFollowUpService
     {
         Task<SimpleResult> Create(LineFollowUp lineFollowUp);
-        Task Delete(int lineId, string deviceToken);
+        Task Delete(long lineId, string deviceToken);
     }
 }

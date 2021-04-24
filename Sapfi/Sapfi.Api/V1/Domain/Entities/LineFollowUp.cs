@@ -5,17 +5,18 @@ namespace Sapfi.Api.V1.Domain.Entities
 {
     public class LineFollowUp : BaseEntity
     {
-        public int LineId { get; private set; }
+        public long LineId { get; private set; }
         public string DeviceToken { get; private set; }
         public int NotifyWhen { get; private set; }
         public bool IsNotified { get; private set; }
+        public Line Line { get; set; }
 
         public LineFollowUp(
             long id,
             DateTime createdAt,
             DateTime? updatedAt,
             bool isDeleted,
-            int lineId, 
+            long lineId, 
             string deviceToken, 
             int notifyWhen, 
             bool isNotified)

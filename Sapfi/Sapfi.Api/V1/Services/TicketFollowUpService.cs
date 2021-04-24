@@ -1,4 +1,5 @@
-﻿using Sapfi.Api.V1.Domain.Core.Models.Processing;
+﻿using Microsoft.Extensions.Logging;
+using Sapfi.Api.V1.Domain.Core.Models.Processing;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
@@ -9,11 +10,15 @@ namespace Sapfi.Api.V1.Services
 {
     public class TicketFollowUpService : ITicketFollowUpService
     {
+        private readonly ILogger<TicketFollowUpService> _logger;
         private readonly ITicketFollowUpRepository _ticketFollowUpRepository;
+        private readonly INotificationService _notificationService;
 
-        public TicketFollowUpService(ITicketFollowUpRepository ticketFollowUpRepository)
+        public TicketFollowUpService(ILogger<TicketFollowUpService> logger, ITicketFollowUpRepository ticketFollowUpRepository, INotificationService notificationService)
         {
+            _logger = logger;
             _ticketFollowUpRepository = ticketFollowUpRepository;
+            _notificationService = notificationService;
         }
 
         public async Task<SimpleResult> Create(TicketFollowUp ticketFollowUp)
@@ -34,7 +39,6 @@ namespace Sapfi.Api.V1.Services
             await _ticketFollowUpRepository.SaveAsync();
 
             return SimpleResult.Success();
-
         }
 
         public async Task Delete(int ticketId, string deviceToken)

@@ -1,29 +1,45 @@
-﻿using Sapfi.Api.V1.Domain.Core.Models.Processing;
+﻿using Microsoft.Extensions.Logging;
+using Sapfi.Api.V1.Domain.Core.Models.Processing;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
 using Sapfi.Api.V1.Domain.Models.LineState.Update;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Services
 {
     public class LineStateService : ILineStateService
     {
+        private readonly ILogger<LineStateService> _logger;
         private readonly ICompanyRepository _companyRepository;
         private readonly ILineRepository _lineRepository;
         private readonly ITicketRepository _ticketRepository;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly ITicketFollowUpRepository _ticketFollowUpRepository;
+        private readonly ILineFollowUpRepository _lineFollowUpRepository;
 
         public LineStateService(
+            ILogger<LineStateService> logger,
             ICompanyRepository companyRepository,
             ILineRepository lineRepository,
-            ITicketRepository ticketRepository)
+            ITicketRepository ticketRepository,
+            INotificationRepository notificationRepository,
+            ITicketFollowUpRepository ticketFollowUpRepository,
+            ILineFollowUpRepository lineFollowUpRepository)
         {
+            _logger = logger;
             _companyRepository = companyRepository;
             _lineRepository = lineRepository;
             _ticketRepository = ticketRepository;
+            _notificationRepository = notificationRepository;
+            _ticketFollowUpRepository = ticketFollowUpRepository;
+            _lineFollowUpRepository = lineFollowUpRepository;
         }
 
+        #region Update State
         public async Task<SimpleResult> Update(string companyToken, LineStateModel lineStateModel)
         {
             if (string.IsNullOrEmpty(companyToken))
@@ -41,6 +57,10 @@ namespace Sapfi.Api.V1.Services
             await UpdateTickets(company.Id, lineStateModel.Tickets);
 
             await _lineRepository.SaveAsync();
+            await _ticketRepository.SaveAsync();
+
+            await CheckTicketFollowUpNotifications(company.Id, lineStateModel.Tickets.Select(t => t.ExternalId));
+            await CheckTicketFollowUpNotifications(company.Id);
 
             return SimpleResult.Success();
         }
@@ -88,7 +108,7 @@ namespace Sapfi.Api.V1.Services
 
             if (line != null)
             {
-                line.NumberOfTickets = lineModel.QuantityOfTicket;
+                line.NumberOfTickets = lineModel.NumberOfTickets;
                 line.WaitingTime = lineModel.WaitingTime;
 
                 _lineRepository.Update(line);
@@ -100,11 +120,101 @@ namespace Sapfi.Api.V1.Services
                     default,
                     default,
                     false,
-                    lineModel.QuantityOfTicket,
+                    lineModel.NumberOfTickets,
                     lineModel.WaitingTime);
 
                 _lineRepository.Create(newLine);
             }
         }
+        #endregion
+
+        #region Ticket Follow Up Notifications
+        private async Task CheckTicketFollowUpNotifications(long companyId, IEnumerable<string> externalIds)
+        {
+            var pendingTicketsFollowUp = await GetPendingTicketsFollowUp(companyId, externalIds);
+
+            foreach (var ticketFollowUp in pendingTicketsFollowUp)
+            {
+                try
+                {
+                    await ProcessTicketFollowUpNotification(ticketFollowUp);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while check for ticket follow up notifications updates.");
+                }
+            }
+        }
+
+        private async Task ProcessTicketFollowUpNotification(TicketFollowUp ticketFollowUp)
+        {
+            const int notifyWhen = 3;
+            string title, body;
+
+            if (ticketFollowUp.Ticket.CalledAt.HasValue)
+            {
+                title = "Seu pedido está pronto";
+                body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {ticketFollowUp.Ticket.CalledAt:dd/MM/yyyy HH:mm}";
+            }
+            else if (ticketFollowUp.Ticket.LinePosition <= notifyWhen)
+            {
+                title = "Sua vez está chegando";
+                body = $"Você está na {ticketFollowUp.Ticket.LinePosition}ª posição da fila.";
+            }
+            else
+            {
+                return;
+            }
+
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default));
+            await _notificationRepository.SaveAsync();
+        }
+
+        private async Task<IReadOnlyCollection<TicketFollowUp>> GetPendingTicketsFollowUp(long companyId, IEnumerable<string> externalIds) =>
+            await _ticketFollowUpRepository.GetAsync(f =>
+                    !f.IsNotified
+                    && f.Ticket.CompanyId == companyId
+                    && externalIds.Contains(f.Ticket.ExternalId), includeProperties: "Ticket");
+        #endregion
+
+        #region Line Follow Up Notifications
+        private async Task CheckTicketFollowUpNotifications(long companyId)
+        {
+            var pendingLineFollowUp = await GetPendingLineFollowUp(companyId);
+            foreach (var lineFollowUp in pendingLineFollowUp)
+            {
+                try
+                {
+                    await ProcessLineFollowUpNotification(lineFollowUp);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while check for line follow up notifications updates.");
+                }
+            }
+        }
+
+        private async Task ProcessLineFollowUpNotification(LineFollowUp lineFollowUp)
+        {
+            string title, body;
+
+            if (lineFollowUp.Line.NumberOfTickets <= lineFollowUp.NotifyWhen)
+            {
+                title = $"Fila de {lineFollowUp.Line.Company.Name}";
+                body = $"A situação da fila combina com seu alerta. " +
+                    $"Quantidade de pessoas: {lineFollowUp.Line.NumberOfTickets} / Tempo de espera: {lineFollowUp.Line.WaitingTime}m";
+            }
+            else
+            {
+                return;
+            }
+
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, lineFollowUp.DeviceToken, default));
+            await _notificationRepository.SaveAsync();
+        }
+
+        private async Task<IReadOnlyCollection<LineFollowUp>> GetPendingLineFollowUp(long companyId) =>
+            await _lineFollowUpRepository.GetAsync(l => !l.IsNotified && l.Id == companyId, includeProperties: "Line,Line.Company");
+        #endregion
     }
 }

@@ -10,6 +10,7 @@ namespace Sapfi.Api.V1.Domain.Entities
         public int WaitingTime { get; set; }
         public Company Company { get; set; }
         public List<LineFollowUp> LinesFollowUp { get; set; }
+
         public Line(
             long id,
             DateTime createdAt,

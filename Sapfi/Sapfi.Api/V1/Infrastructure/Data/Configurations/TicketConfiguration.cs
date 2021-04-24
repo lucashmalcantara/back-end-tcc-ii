@@ -20,6 +20,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.WaitingTime).HasColumnName("waiting_time").IsRequired();
             builder.Property(x => x.CalledAt).HasColumnName("called_at");
             builder.Property(x => x.CompanyId).HasColumnName("company_id").IsRequired();
+            builder.HasMany(x => x.TicketFollowUpList).WithOne(y => y.Ticket).HasForeignKey(t => t.TicketId);
         }
     }
 }

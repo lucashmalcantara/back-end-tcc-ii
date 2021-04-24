@@ -36,11 +36,11 @@ namespace Sapfi.Api.V1.Services
             return SimpleResult.Success();
         }
 
-        public async Task Delete(int lineId, string deviceToken)
+        public async Task Delete(long lineId, string deviceToken)
         {
             throw new NotImplementedException();
         }
 
-        private async Task<bool> LineFollowUpExists(int lineId, string deviceToken) => await _lineFollowUpRepository.GetExistsAsync(l => l.LineId == lineId && l.DeviceToken == deviceToken);
+        private async Task<bool> LineFollowUpExists(long lineId, string deviceToken) => await _lineFollowUpRepository.GetExistsAsync(l => l.LineId == lineId && l.DeviceToken == deviceToken);
     }
 }

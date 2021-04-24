@@ -12,13 +12,13 @@ namespace Sapfi.Api.V1.Application.Controllers
     [Route("v{version:apiVersion}/[controller]")]
     public class LinesStateController : ControllerBase
     {
-        private readonly ILineStateService _lineStateService;
         private readonly IMapper _mapper;
+        private readonly ILineStateService _lineStateService;
 
-        public LinesStateController(ILineStateService lineStateService, IMapper mapper)
+        public LinesStateController(IMapper mapper, ILineStateService lineStateService)
         {
-            _lineStateService = lineStateService;
             _mapper = mapper;
+            _lineStateService = lineStateService;
         }
 
         [HttpPost("{companyToken}")]

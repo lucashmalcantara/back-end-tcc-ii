@@ -20,7 +20,7 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
         /// <summary>
         /// When the ticket was issued.
         /// </summary>
-        /// <example>2021-04-10T15:00:00-03:00</example>
+        /// <example>2021-04-22T15:00:00-03:00</example>
         public DateTime IssueDate { get; set; }
         /// <summary>
         /// The ticket position in the line.
@@ -35,7 +35,7 @@ namespace Sapfi.Api.V1.Application.Models.LineState.Post
         /// <summary>
         /// When the ticket was called. This value will be while the ticket was not called.
         /// </summary>
-        /// <example>2021-04-10T14:30:00-03:00</example>
+        /// <example>2021-04-22T15:30:00-03:00</example>
         public DateTime? CalledAt { get; set; }
     }
 }

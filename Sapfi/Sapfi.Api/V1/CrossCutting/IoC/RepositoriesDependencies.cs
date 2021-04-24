@@ -11,14 +11,14 @@ namespace Sapfi.Api.V1.CrossCutting.IoC
     {
         public static void AddRepositoriesDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ILineFollowUpRepository, LineFollowUpRepository>();
-            services.AddScoped<ILineRepository, LineRepository>();
-            services.AddScoped<INotificationRepository, NotificationRepository>();
-            services.AddScoped<ITicketFollowUpRepository, TicketFollowUpRepository>();
-            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<ILineFollowUpRepository, LineFollowUpRepository>();
+            services.AddTransient<ILineRepository, LineRepository>();
+            services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddTransient<ITicketFollowUpRepository, TicketFollowUpRepository>();
+            services.AddTransient<ITicketRepository, TicketRepository>();
             services.AddDbContext<SapfiDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("Default")));
+                    options.UseNpgsql(configuration.GetConnectionString("Default")), ServiceLifetime.Transient, ServiceLifetime.Transient);
         }
     }
 }

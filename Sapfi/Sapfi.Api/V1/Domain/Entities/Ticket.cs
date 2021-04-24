@@ -1,5 +1,6 @@
 ﻿using Sapfi.Api.V1.Domain.Entities.Base;
 using System;
+using System.Collections.Generic;
 
 namespace Sapfi.Api.V1.Domain.Entities
 {
@@ -13,6 +14,7 @@ namespace Sapfi.Api.V1.Domain.Entities
         public DateTime? CalledAt { get; set; }
         public long CompanyId { get; private set; }
         public Company Company { get; set; }
+        public List<TicketFollowUp> TicketFollowUpList { get; set; }
 
         public Ticket(
             long id,

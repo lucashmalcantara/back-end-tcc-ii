@@ -2,12 +2,12 @@
 {
     public class LineModel
     {
-        public int QuantityOfTicket { get; private set; }
+        public int NumberOfTickets { get; private set; }
         public int WaitingTime { get; private set; }
 
-        public LineModel(int quantityOfTicket, int waitingTime)
+        public LineModel(int numberOfTickets, int waitingTime)
         {
-            QuantityOfTicket = quantityOfTicket;
+            NumberOfTickets = numberOfTickets;
             WaitingTime = waitingTime;
         }
         private LineModel() { }

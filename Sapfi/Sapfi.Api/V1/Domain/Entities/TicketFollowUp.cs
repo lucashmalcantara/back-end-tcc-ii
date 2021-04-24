@@ -8,6 +8,7 @@ namespace Sapfi.Api.V1.Domain.Entities
         public long TicketId { get; private set; }
         public string DeviceToken { get; private set; }
         public bool IsNotified { get; private set; }
+        public Ticket Ticket { get; set; }
 
         public TicketFollowUp(
             long id,

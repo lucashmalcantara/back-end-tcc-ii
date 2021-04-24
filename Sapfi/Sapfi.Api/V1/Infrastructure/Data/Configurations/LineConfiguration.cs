@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sapfi.Api.V1.Domain.Entities;
-using System;
 
 namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
 {
@@ -16,6 +15,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Configurations
             builder.Property(x => x.IsDeleted).HasColumnName("is_deleted").IsRequired();
             builder.Property(x => x.NumberOfTickets).HasColumnName("number_of_tickets").IsRequired();
             builder.Property(x => x.WaitingTime).HasColumnName("waiting_time").IsRequired();
+            builder.HasMany(x => x.LinesFollowUp).WithOne(y => y.Line).HasForeignKey(t => t.LineId);
         }
     }
 }

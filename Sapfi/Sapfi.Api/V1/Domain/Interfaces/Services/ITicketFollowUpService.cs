@@ -7,6 +7,5 @@ namespace Sapfi.Api.V1.Domain.Interfaces.Services
     public interface ITicketFollowUpService
     {
         Task<SimpleResult> Create(TicketFollowUp ticketFollowUp);
-        Task Delete(int ticketId, string deviceToken);
     }
 }

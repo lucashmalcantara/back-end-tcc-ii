@@ -33,8 +33,8 @@ values
 	false,
 	'451ed7f8-d284-4120-b284-7c98f999ebc2',
 	'67194226000141',
-	'Restaurante 01',
 	'Jaqueline e Danilo Doces & Salgados Ltda',
+	'JD Doces',
 	'ABCD'
 ),
 (
@@ -43,8 +43,8 @@ values
 	false,
 	'b59d69b9-bf8f-4009-b551-f5b96eea4025',
 	'52400193000171',
-	'Restaurante 02',
 	'Andreia e Rosângela Alimentos Ltda',
+	'AR Alimentos',
 	'EFGH'
 ),
 (
@@ -53,8 +53,8 @@ values
 	false,
 	'a21a6845-94de-4c5f-a8a0-c1d575e65aac',
 	'17915190000170',
-	'Restaurante 03',
 	'Rafael e Ricardo Pizzaria Delivery Ltda',
+	'RR Pizzaria',
 	'IJKL'
 );
 

@@ -38,9 +38,9 @@ namespace Sapfi.Api.V1.Services
             }
 
             var company = await _companyRepository.GetAsync(
-                c => c.Address.Country == country
-                && c.Address.State == state
-                && c.Address.City == city, includeProperties: "Address");
+                c => c.Address.Country.ToUpper() == country.ToUpper()
+                && c.Address.State.ToUpper() == state.ToUpper()
+                && c.Address.City.ToUpper() == city.ToUpper(), includeProperties: "Address");
 
             return Result<IReadOnlyCollection<Company>>.Success(company);
         }

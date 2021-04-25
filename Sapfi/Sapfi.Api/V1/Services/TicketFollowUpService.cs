@@ -3,7 +3,6 @@ using Sapfi.Api.V1.Domain.Core.Models.Processing;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Repositories;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Services
@@ -39,11 +38,6 @@ namespace Sapfi.Api.V1.Services
             await _ticketFollowUpRepository.SaveAsync();
 
             return SimpleResult.Success();
-        }
-
-        public async Task Delete(int ticketId, string deviceToken)
-        {
-            throw new NotImplementedException();
         }
 
         private async Task<bool> TicketFollowUpExists(long ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);

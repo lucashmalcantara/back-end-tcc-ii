@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Application.Models.TicketFollowUp.Post;
-using Sapfi.Api.V1.Domain.Core.Models.Processing;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
 using System.Threading.Tasks;
@@ -33,15 +32,6 @@ namespace Sapfi.Api.V1.Application.Controllers
                 return BadRequest(response.Error);
 
             return NoContent();
-        }
-
-        [HttpDelete]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult Delete(int ticketId, string deviceToken)
-        {
-            return BadRequest(
-                new Error("Funcionalidade indisponível",
-                "A funcionalidade para exclusão do Ticket ainda não está disponível."));
         }
     }
 }

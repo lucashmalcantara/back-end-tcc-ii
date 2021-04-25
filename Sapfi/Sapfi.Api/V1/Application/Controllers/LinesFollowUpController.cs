@@ -22,7 +22,7 @@ namespace Sapfi.Api.V1.Application.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Create([FromBody] PostLineFollowUpModel createLineFollowUp)
         {
             var lineFollowUp = _mapper.Map<LineFollowUp>(createLineFollowUp);
@@ -31,13 +31,18 @@ namespace Sapfi.Api.V1.Application.Controllers
             if (response.HasError)
                 return BadRequest(response.Error);
 
-            return NoContent();
+            return Created("", response.Data);
         }
 
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete(int lineId, string deviceToken)
+        public async Task<IActionResult> DeleteById(long id)
         {
+            var response = await _lineFollowUpService.DeleteById(id);
+
+            if (response.HasError)
+                return BadRequest(response.Error);
+
             return NoContent();
         }
     }

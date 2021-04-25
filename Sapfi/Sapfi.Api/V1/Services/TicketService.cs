@@ -38,7 +38,10 @@ namespace Sapfi.Api.V1.Services
             var last24hours = DateTime.Now.AddDays(-1);
 
             var ticket = await _ticketRepository.GetFirstAsync(
-                filter: t => t.Company.FriendlyHumanCode == friendlyHumanCode && t.Number == number && t.IssueDate >= last24hours,
+                filter: t => 
+                    t.Company.FriendlyHumanCode.ToUpper() == friendlyHumanCode.ToUpper() 
+                    && t.Number.ToUpper() == number.ToUpper() 
+                    && t.IssueDate >= last24hours,
                 orderBy: t => t.OrderByDescending(t => t.IssueDate));
 
             return Result<Ticket>.Success(ticket);

@@ -35,8 +35,7 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Repositories.Base
         public virtual void Delete(TEntity entity)
         {
             entity.IsDeleted = true;
-            _context.Set<TEntity>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            Update(entity);
         }
 
         public virtual void Save() => _context.SaveChanges();

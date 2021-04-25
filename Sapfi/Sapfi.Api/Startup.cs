@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sapfi.Api.V1.Application.ConfigureOptions;
+using Sapfi.Api.V1.Application.HostedServices;
 using Sapfi.Api.V1.CrossCutting.IoC;
 using System;
 
@@ -43,9 +44,12 @@ namespace Sapfi.Api
 
             services.AddSwaggerGen();
 
+            services.AddHttpClient("ExpoPushClient", c => { c.BaseAddress = new Uri("https://exp.host/--/api/"); });
+
             services.ConfigureOptions<ConfigureSwaggerOptions>();
             services.AddRepositoriesDependencies(Configuration);
             services.AddServicesDependencies();
+            services.AddHostedService<NotificationHostedService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionDescriptionProvider)

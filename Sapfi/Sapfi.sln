@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BF4A8159-2C25-4FED-9C07-4C1A8DEF70E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1B254D48-7330-431D-BA16-2BE32309D2AD}"
+	ProjectSection(SolutionItems) = preProject
+		Sapfi.Api\V1\Services\NotificationService.cs = Sapfi.Api\V1\Services\NotificationService.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sapfi.Api.ApiTests", "Sapfi.Api.ApiTests\Sapfi.Api.ApiTests.csproj", "{41DF201E-5D3D-4F4D-B85C-4D9453A307F4}"
 EndProject

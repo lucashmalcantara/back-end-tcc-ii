@@ -166,7 +166,7 @@ namespace Sapfi.Api.V1.Services
                 return;
             }
 
-            _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default));
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default, default, default));
             await _notificationRepository.SaveAsync();
         }
 
@@ -209,7 +209,7 @@ namespace Sapfi.Api.V1.Services
                 return;
             }
 
-            _notificationRepository.Create(new Notification(default, default, default, default, title, body, lineFollowUp.DeviceToken, default));
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, lineFollowUp.DeviceToken, default, default, default));
             await _notificationRepository.SaveAsync();
         }
 

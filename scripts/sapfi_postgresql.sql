@@ -45,6 +45,8 @@ CREATE TABLE public.notification
     body character varying(255) NOT NULL,
     device_token character varying(255) NOT NULL,
     is_sent boolean NOT NULL DEFAULT false,
+    error_sending boolean NOT NULL DEFAULT false,
+    sending_message character varying(2000),
     CONSTRAINT pk_notification PRIMARY KEY (id)
 );
 

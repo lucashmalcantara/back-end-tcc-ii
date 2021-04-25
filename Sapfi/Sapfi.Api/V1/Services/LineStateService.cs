@@ -166,8 +166,13 @@ namespace Sapfi.Api.V1.Services
                 return;
             }
 
-            _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default));
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default, default, default));
+
+            ticketFollowUp.IsNotified = true;
+            _ticketFollowUpRepository.Update(ticketFollowUp);
+
             await _notificationRepository.SaveAsync();
+            await _ticketFollowUpRepository.SaveAsync();
         }
 
         private async Task<IReadOnlyCollection<TicketFollowUp>> GetPendingTicketsFollowUp(long companyId, IEnumerable<string> externalIds) =>
@@ -209,8 +214,13 @@ namespace Sapfi.Api.V1.Services
                 return;
             }
 
-            _notificationRepository.Create(new Notification(default, default, default, default, title, body, lineFollowUp.DeviceToken, default));
+            _notificationRepository.Create(new Notification(default, default, default, default, title, body, lineFollowUp.DeviceToken, default, default, default));
+
+            lineFollowUp.IsNotified = true;
+            _lineFollowUpRepository.Update(lineFollowUp);            
+
             await _notificationRepository.SaveAsync();
+            await _lineFollowUpRepository.SaveAsync();
         }
 
         private async Task<IReadOnlyCollection<LineFollowUp>> GetPendingLineFollowUp(long companyId) =>

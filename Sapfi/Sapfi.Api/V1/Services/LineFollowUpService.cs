@@ -40,6 +40,7 @@ namespace Sapfi.Api.V1.Services
                 return Result<long>.Success(lineFollowUp.Id);
             }
         }
+
         public async Task<SimpleResult> DeleteById(long id)
         {
             if (id <= 0)

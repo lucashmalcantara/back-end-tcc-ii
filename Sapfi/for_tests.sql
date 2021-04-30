@@ -22,8 +22,8 @@ insert into company
 	is_deleted,
 	api_token,
 	document,
-	name,
 	trading_name,
+	name,
 	friendly_human_code
 )
 values

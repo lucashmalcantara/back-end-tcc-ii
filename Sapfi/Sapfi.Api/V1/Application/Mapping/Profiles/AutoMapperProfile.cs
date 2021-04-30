@@ -18,7 +18,8 @@ namespace Sapfi.Api.V1.Application.Mapping.Profiles
             CreateMap<PostLineStateModel, LineStateModel>();
             CreateMap<PostLineStateLineModel, LineModel>();
             CreateMap<PostLineStateTicketModel, TicketModel>();
-            CreateMap<Ticket, GetTicketModel>();
+            CreateMap<Ticket, GetTicketModel>()
+                .ForMember(t => t.CompanyTradingName, o => o.MapFrom(t => t.Company.TradingName));
             CreateMap<Ticket, GetCalledTicketModel>();
             CreateMap<Company, GetCompanyModel>();
             CreateMap<Address, GetCompanyAddressModel>();

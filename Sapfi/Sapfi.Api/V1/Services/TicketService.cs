@@ -22,7 +22,7 @@ namespace Sapfi.Api.V1.Services
             if (id <= 0)
                 return Result<Ticket>.Fail(new Error("Código inválido", "Código de ticket inválido."));
 
-            var ticket = await _ticketRepository.GetFirstAsync(t => t.Id == id);
+            var ticket = await _ticketRepository.GetFirstAsync(t => t.Id == id, includeProperties: "Company");
 
             return Result<Ticket>.Success(ticket);
         }
@@ -42,7 +42,8 @@ namespace Sapfi.Api.V1.Services
                     t.Company.FriendlyHumanCode.ToUpper() == friendlyHumanCode.ToUpper() 
                     && t.Number.ToUpper() == number.ToUpper() 
                     && t.IssueDate >= last24hours,
-                orderBy: t => t.OrderByDescending(t => t.IssueDate));
+                orderBy: t => t.OrderByDescending(t => t.IssueDate), 
+                includeProperties: "Company");
 
             return Result<Ticket>.Success(ticket);
         }

@@ -7,7 +7,7 @@ namespace Sapfi.Api.V1.Domain.Entities
     {
         public long LineId { get; private set; }
         public string DeviceToken { get; private set; }
-        public int NotifyWhen { get; private set; }
+        public int NotifyWhen { get; set; }
         public bool IsNotified { get; set; }
         public Line Line { get; set; }
 

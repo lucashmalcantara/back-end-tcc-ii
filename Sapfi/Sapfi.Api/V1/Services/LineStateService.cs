@@ -60,7 +60,7 @@ namespace Sapfi.Api.V1.Services
             await _ticketRepository.SaveAsync();
 
             await CheckTicketFollowUpNotifications(company.Id, lineStateModel.Tickets.Select(t => t.ExternalId));
-            await CheckTicketFollowUpNotifications(company.Id);
+            await LineFollowUpNotifications(company.Id);
 
             return SimpleResult.Success();
         }
@@ -153,8 +153,14 @@ namespace Sapfi.Api.V1.Services
 
             if (ticketFollowUp.Ticket.CalledAt.HasValue)
             {
+                var dateTimeBrazil = ticketFollowUp.Ticket.CalledAt.Value.AddHours(-3);
+
                 title = "Seu pedido está pronto";
-                body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {ticketFollowUp.Ticket.CalledAt:dd/MM/yyyy HH:mm}";
+                body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {dateTimeBrazil:dd/MM/yyyy HH:mm}";
+        
+                ticketFollowUp.IsNotified = true;
+                _ticketFollowUpRepository.Update(ticketFollowUp);
+                await _ticketFollowUpRepository.SaveAsync();
             }
             else if (ticketFollowUp.Ticket.LinePosition <= notifyWhen)
             {
@@ -168,11 +174,7 @@ namespace Sapfi.Api.V1.Services
 
             _notificationRepository.Create(new Notification(default, default, default, default, title, body, ticketFollowUp.DeviceToken, default, default, default));
 
-            ticketFollowUp.IsNotified = true;
-            _ticketFollowUpRepository.Update(ticketFollowUp);
-
             await _notificationRepository.SaveAsync();
-            await _ticketFollowUpRepository.SaveAsync();
         }
 
         private async Task<IReadOnlyCollection<TicketFollowUp>> GetPendingTicketsFollowUp(long companyId, IEnumerable<string> externalIds) =>
@@ -183,7 +185,7 @@ namespace Sapfi.Api.V1.Services
         #endregion
 
         #region Line Follow Up Notifications
-        private async Task CheckTicketFollowUpNotifications(long companyId)
+        private async Task LineFollowUpNotifications(long companyId)
         {
             var pendingLineFollowUp = await GetPendingLineFollowUp(companyId);
             foreach (var lineFollowUp in pendingLineFollowUp)
@@ -224,7 +226,7 @@ namespace Sapfi.Api.V1.Services
         }
 
         private async Task<IReadOnlyCollection<LineFollowUp>> GetPendingLineFollowUp(long companyId) =>
-            await _lineFollowUpRepository.GetAsync(l => !l.IsNotified && l.Id == companyId, includeProperties: "Line,Line.Company");
+            await _lineFollowUpRepository.GetAsync(l => !l.IsNotified && l.LineId == companyId, includeProperties: "Line,Line.Company");
         #endregion
     }
 }

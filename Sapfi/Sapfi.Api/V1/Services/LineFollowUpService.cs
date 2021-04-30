@@ -41,19 +41,6 @@ namespace Sapfi.Api.V1.Services
             }
         }
 
-        public async Task<SimpleResult> DeleteById(long id)
-        {
-            if (id <= 0)
-                return SimpleResult.Fail(new Error("ID inválido", "O valor do ID é inválido"));
-
-            _lineFollowUpRepository.Delete(id);
-
-            await _lineFollowUpRepository.SaveAsync();
-
-            return SimpleResult.Success();
-        }
-
-
         public async Task<Result<LineFollowUp>> Get(int lineId, string deviceToken)
         {
             if (lineId <= 0)

@@ -33,8 +33,8 @@ values
 	false,
 	'451ed7f8-d284-4120-b284-7c98f999ebc2',
 	'67194226000141',
-	'Jaqueline e Danilo Doces & Salgados Ltda',
 	'JD Doces',
+	'Jaqueline e Danilo Doces & Salgados Ltda',
 	'ABCD'
 ),
 (
@@ -43,8 +43,8 @@ values
 	false,
 	'b59d69b9-bf8f-4009-b551-f5b96eea4025',
 	'52400193000171',
-	'Andreia e Rosângela Alimentos Ltda',
 	'AR Alimentos',
+	'Andreia e Rosângela Alimentos Ltda',
 	'EFGH'
 ),
 (
@@ -53,8 +53,8 @@ values
 	false,
 	'a21a6845-94de-4c5f-a8a0-c1d575e65aac',
 	'17915190000170',
-	'Rafael e Ricardo Pizzaria Delivery Ltda',
 	'RR Pizzaria',
+	'Rafael e Ricardo Pizzaria Delivery Ltda',
 	'IJKL'
 );
 
@@ -90,7 +90,7 @@ values
 	'32340001',
 	'Eldorado',
 	'Av. João César de Oliveira',
-	'2999',
+	'99.990',
 	'Loja 01'
 ),
 (
@@ -104,7 +104,7 @@ values
 	'32340001',
 	'Eldorado',
 	'Av. João César de Oliveira',
-	'2999',
+	'99.991',
 	'Loja 02'
 ),
 (
@@ -118,7 +118,7 @@ values
 	'32340001',
 	'Eldorado',
 	'Av. João César de Oliveira',
-	'3000',
+	'99.992',
 	null
 );
 

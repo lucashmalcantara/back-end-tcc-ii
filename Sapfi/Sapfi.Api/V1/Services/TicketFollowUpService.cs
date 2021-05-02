@@ -40,6 +40,7 @@ namespace Sapfi.Api.V1.Services
             return SimpleResult.Success();
         }
 
-        private async Task<bool> TicketFollowUpExists(long ticketId) => await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId);
+        private async Task<bool> TicketFollowUpExists(long ticketId) => 
+            await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId && !t.IsNotified);
     }
 }

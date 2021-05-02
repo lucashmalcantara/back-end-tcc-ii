@@ -207,7 +207,7 @@ namespace Sapfi.Api.V1.Services
 
             if (lineFollowUp.Line.NumberOfTickets <= lineFollowUp.NotifyWhen)
             {
-                title = $"Fila de {lineFollowUp.Line.Company.Name}";
+                title = $"Fila de {lineFollowUp.Line.Company.TradingName}";
                 body = $"A situação da fila combina com seu alerta. " +
                     $"Quantidade de pessoas: {lineFollowUp.Line.NumberOfTickets} / Tempo de espera: {lineFollowUp.Line.WaitingTime}m";
             }

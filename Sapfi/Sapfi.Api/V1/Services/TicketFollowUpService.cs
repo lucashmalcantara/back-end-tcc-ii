@@ -47,7 +47,7 @@ namespace Sapfi.Api.V1.Services
             if(ticketFollowUp == null)
                 return SimpleResult.Success();
 
-            _ticketFollowUpRepository.Delete(ticketId);
+            _ticketFollowUpRepository.Delete(ticketFollowUp.Id);
             await _ticketFollowUpRepository.SaveAsync();
             return SimpleResult.Success();
         }

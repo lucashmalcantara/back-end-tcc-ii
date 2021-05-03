@@ -20,7 +20,6 @@ namespace Sapfi.Api.V1.Application.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTicketModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -56,7 +55,6 @@ namespace Sapfi.Api.V1.Application.Controllers
 
             return Ok(getModel);
         }
-
 
         [HttpGet("called-tickets/last")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IReadOnlyCollection<GetCalledTicketModel>))]

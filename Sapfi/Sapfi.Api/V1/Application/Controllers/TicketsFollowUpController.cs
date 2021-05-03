@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sapfi.Api.V1.Application.Models.TicketFollowUp.Post;
 using Sapfi.Api.V1.Domain.Entities;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Sapfi.Api.V1.Application.Controllers
@@ -27,6 +28,20 @@ namespace Sapfi.Api.V1.Application.Controllers
         {
             var ticketFollowUp = _mapper.Map<TicketFollowUp>(createTicketFollowUpDto);
             var response = await _ticketFollowUpService.Create(ticketFollowUp);
+
+            if (response.HasError)
+                return BadRequest(response.Error);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Delete(
+            [Required][FromQuery] int ticketId, 
+            [Required][FromQuery] string deviceToken)
+        {
+            var response = await _ticketFollowUpService.Delete(ticketId, deviceToken);
 
             if (response.HasError)
                 return BadRequest(response.Error);

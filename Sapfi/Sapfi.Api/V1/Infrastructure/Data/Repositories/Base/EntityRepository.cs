@@ -29,6 +29,10 @@ namespace Sapfi.Api.V1.Infrastructure.Data.Repositories.Base
         public virtual void Delete(object id)
         {
             TEntity entity = _context.Set<TEntity>().Find(id);
+            
+            if (entity == null)
+                return;
+
             Delete(entity);
         }
 

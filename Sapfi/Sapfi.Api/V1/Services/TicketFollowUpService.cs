@@ -28,7 +28,7 @@ namespace Sapfi.Api.V1.Services
             if (string.IsNullOrWhiteSpace(ticketFollowUp.DeviceToken))
                 return SimpleResult.Fail(new Error("Device Token inválido", "O valor do Device Token é inválido"));
 
-            bool ticketFollowUpExists = await TicketFollowUpExists(ticketFollowUp.TicketId);
+            bool ticketFollowUpExists = await TicketFollowUpExists(ticketFollowUp.TicketId, ticketFollowUp.DeviceToken);
 
             if (ticketFollowUpExists)
                 return SimpleResult.Success();
@@ -40,7 +40,28 @@ namespace Sapfi.Api.V1.Services
             return SimpleResult.Success();
         }
 
-        private async Task<bool> TicketFollowUpExists(long ticketId) => 
-            await _ticketFollowUpRepository.GetExistsAsync(t => t.TicketId == ticketId && !t.IsNotified);
+        public async Task<SimpleResult> Delete(long ticketId, string deviceToken)
+        {
+            var ticketFollowUp = await Get(ticketId, deviceToken);
+
+            if(ticketFollowUp == null)
+                return SimpleResult.Success();
+
+            _ticketFollowUpRepository.Delete(ticketId);
+            await _ticketFollowUpRepository.SaveAsync();
+            return SimpleResult.Success();
+        }
+
+        private async Task<bool> TicketFollowUpExists(long ticketId, string deviceToken) =>
+            await _ticketFollowUpRepository.GetExistsAsync(t =>
+                t.TicketId == ticketId
+                && t.DeviceToken == deviceToken 
+                && !t.IsNotified);
+
+        private async Task<TicketFollowUp> Get(long ticketId, string deviceToken) =>
+            await _ticketFollowUpRepository.GetFirstAsync(t =>
+                t.TicketId == ticketId
+                && t.DeviceToken == deviceToken
+                && !t.IsNotified);
     }
 }

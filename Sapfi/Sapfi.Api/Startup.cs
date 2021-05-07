@@ -50,6 +50,7 @@ namespace Sapfi.Api
             services.AddRepositoriesDependencies(Configuration);
             services.AddServicesDependencies();
             services.AddHostedService<NotificationHostedService>();
+            services.AddHostedService<SimulatorHostedService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionDescriptionProvider)

@@ -154,8 +154,6 @@ namespace Sapfi.Api.V1.Services
 
             if (ticketFollowUp.Ticket.CalledAt.HasValue)
             {
-                //var dateTimeBrazil = ticketFollowUp.Ticket.CalledAt.Value.AddHours(-3);
-
                 title = "Seu pedido está pronto";
                 body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {ticketFollowUp.Ticket.CalledAt.Value:dd/MM/yyyy HH:mm}";
         

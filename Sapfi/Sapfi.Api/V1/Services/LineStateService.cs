@@ -78,6 +78,7 @@ namespace Sapfi.Api.V1.Services
 
             if (ticket != null)
             {
+                ticket.IssueDate = ticketModel.IssueDate;
                 ticket.LinePosition = ticketModel.LinePosition;
                 ticket.WaitingTime = ticketModel.WaitingTime;
                 ticket.CalledAt = ticketModel.CalledAt;

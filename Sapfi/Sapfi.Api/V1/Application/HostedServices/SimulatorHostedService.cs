@@ -12,14 +12,20 @@ namespace Sapfi.Api.V1.Application.HostedServices
 {
     public class SimulatorHostedService : BackgroundService
     {
-        private const string CompanyToken = "f6e38f27-b193-45ae-8d72-594721a4d237";
+        private readonly string[] _companyTokens = new string[]
+        {
+            "f6e38f27-b193-45ae-8d72-594721a4d237",
+            "b59d69b9-bf8f-4009-b551-f5b96eea4025",
+            "a21a6845-94de-4c5f-a8a0-c1d575e65aac",
+            "451ed7f8-d284-4120-b284-7c98f999ebc2"
+        };
+
         private const int NumberOfTickets = 10;
         private const int IntervalBetweenTicketsInMinutes = 5;
-        private const int DelayToAllowVisualizationInMilliseconds = 5000;
+        private const int DelayToAllowVisualizationInMilliseconds = 10000;
 
         private readonly ILogger<SimulatorHostedService> _logger;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private const int CheckUpdateTime = 1000;
 
         public SimulatorHostedService(ILogger<SimulatorHostedService> logger, IServiceScopeFactory serviceScopeFactory)
         {
@@ -40,26 +46,28 @@ namespace Sapfi.Api.V1.Application.HostedServices
 
                 try
                 {
-                    for (int i = 0; i < NumberOfTickets; i++)
+                    for (int ticketIterationIndex = 1; ticketIterationIndex <= NumberOfTickets; ticketIterationIndex++)
                     {
-                        using (var scope = _serviceScopeFactory.CreateScope())
+                        for (int companyIterationIndex = 0; companyIterationIndex < _companyTokens.Length; companyIterationIndex++)
                         {
-                            var lineStateService = scope.ServiceProvider.GetService<ILineStateService>();
+                            var lineState = GetLineState(NumberOfTickets, ticketIterationIndex, IntervalBetweenTicketsInMinutes + companyIterationIndex);
 
-                            var lineState = GetLineState(NumberOfTickets, i, IntervalBetweenTicketsInMinutes);
-                            await lineStateService.Update(CompanyToken, lineState);
+                            using (var scope = _serviceScopeFactory.CreateScope())
+                            {
+                                var lineStateService = scope.ServiceProvider.GetService<ILineStateService>();
+
+                                await lineStateService.Update(_companyTokens[companyIterationIndex], lineState);
+                            }
                         }
-
-                        await Task.Delay(DelayToAllowVisualizationInMilliseconds);
                     }
+
+                    await Task.Delay(DelayToAllowVisualizationInMilliseconds);
 
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error while sending pending notifications.");
                 }
-
-                await Task.Delay(CheckUpdateTime, stoppingToken);
             }
 
             _logger.LogDebug($"{nameof(SimulatorHostedService)} background task is stopping.");
@@ -73,19 +81,13 @@ namespace Sapfi.Api.V1.Application.HostedServices
 
             var ticketModels = new List<TicketModel>();
 
-            var lastTicketModel = new TicketModel(
-                $"{referenceDate.Date.Ticks}{numberOfTickets}",
-                $"ABC{numberOfTickets + ComplementaryValue}",
-                referenceDate,
-                numberOfTickets,
-                watingTime);
-
-            for (int i = 0; i < numberOfTickets; i++)
+            for (int i = 1; i <= numberOfTickets; i++)
             {
                 var wasCalled = i <= called;
-                var nextTicketWatingTime = wasCalled ? 0 : i * intervalBetweenTicketsInMinutes;
+                var nextTicketLinePosition = wasCalled ? 0 : i - called;
+                var nextTicketWatingTime = wasCalled ? 0 : nextTicketLinePosition * intervalBetweenTicketsInMinutes;
                 var nextTicketIssueDate = referenceDate.AddMinutes(((numberOfTickets - i) * intervalBetweenTicketsInMinutes) * -1);
-                var nextTicketLinePosition = wasCalled ? 0 : i;
+
                 DateTime? nextTicketCalledAt = null;
 
                 if (wasCalled)
@@ -101,8 +103,6 @@ namespace Sapfi.Api.V1.Application.HostedServices
 
                 ticketModels.Add(nextTicketModel);
             }
-
-            ticketModels.Add(lastTicketModel);
 
             var lineModel = new LineModel(numberOfTickets - called, watingTime);
 

@@ -59,10 +59,9 @@ namespace Sapfi.Api.V1.Application.HostedServices
                                 await lineStateService.Update(_companyTokens[companyIterationIndex], lineState);
                             }
                         }
+
+                        await Task.Delay(DelayToAllowVisualizationInMilliseconds);
                     }
-
-                    await Task.Delay(DelayToAllowVisualizationInMilliseconds);
-
                 }
                 catch (Exception ex)
                 {

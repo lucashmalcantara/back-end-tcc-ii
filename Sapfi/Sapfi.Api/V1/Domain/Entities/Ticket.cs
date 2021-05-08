@@ -1,4 +1,5 @@
-﻿using Sapfi.Api.V1.Domain.Entities.Base;
+﻿
+using Sapfi.Api.V1.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 

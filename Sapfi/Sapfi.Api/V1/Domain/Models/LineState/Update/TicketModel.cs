@@ -16,20 +16,6 @@ namespace Sapfi.Api.V1.Domain.Models.LineState.Update
             string number,
             DateTime issueDate,
             int linePosition,
-            int waitingTime)
-        {
-            ExternalId = externalId;
-            Number = number;
-            IssueDate = issueDate;
-            LinePosition = linePosition;
-            WaitingTime = waitingTime;
-        }
-
-        public TicketModel(
-            string externalId,
-            string number,
-            DateTime issueDate,
-            int linePosition,
             int waitingTime,
             DateTime? calledAt)
         {

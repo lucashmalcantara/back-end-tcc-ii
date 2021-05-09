@@ -1,8 +1,8 @@
 CREATE TABLE public.company
 (
     id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     api_token character(36) NOT NULL,
     friendly_human_code character(4) NOT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE public.company
 CREATE TABLE public.address
 (
     id bigint NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     country character varying(75) NOT NULL,
     state character varying(75) NOT NULL,
@@ -38,8 +38,8 @@ CREATE TABLE public.address
 CREATE TABLE public.notification
 (
     id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     title character varying(75) NOT NULL,
     body character varying(255) NOT NULL,
@@ -53,15 +53,15 @@ CREATE TABLE public.notification
 CREATE TABLE public.ticket
 (
     id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     external_id character varying(75) NOT NULL,
     number character varying(25) NOT NULL,
-    issue_date timestamp with time zone NOT NULL,
+    issue_date timestamp NOT NULL,
     line_position integer NOT NULL,
     waiting_time integer NOT NULL,
-    called_at timestamp with time zone,
+    called_at timestamp,
     company_id bigint NOT NULL,
     CONSTRAINT pk_ticket PRIMARY KEY (id),
     CONSTRAINT fk_ticket_company FOREIGN KEY (company_id)
@@ -74,8 +74,8 @@ CREATE TABLE public.ticket
 CREATE TABLE public.ticket_follow_up
 (
     id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     ticket_id bigint NOT NULL,
     device_token character varying(255) NOT NULL,
@@ -91,8 +91,8 @@ CREATE TABLE public.ticket_follow_up
 CREATE TABLE public.line
 (
     id bigint NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     number_of_tickets integer NOT NULL,
     waiting_time integer NOT NULL,
@@ -107,8 +107,8 @@ CREATE TABLE public.line
 CREATE TABLE public.line_follow_up
 (
     id bigserial NOT NULL,
-    created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone,
+    created_at timestamp NOT NULL,
+    updated_at timestamp,
     is_deleted boolean NOT NULL,
     device_token character varying(255) NOT NULL,
     notify_when integer NOT NULL,

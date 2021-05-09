@@ -1,4 +1,5 @@
-﻿using Sapfi.Api.V1.Domain.Entities.Base;
+﻿
+using Sapfi.Api.V1.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace Sapfi.Api.V1.Domain.Entities
     {
         public string ExternalId { get; private set; }
         public string Number { get; private set; }
-        public DateTime IssueDate { get; private set; }
+        public DateTime IssueDate { get; set; }
         public int LinePosition { get; set; }
         public int WaitingTime { get; set; }
         public DateTime? CalledAt { get; set; }

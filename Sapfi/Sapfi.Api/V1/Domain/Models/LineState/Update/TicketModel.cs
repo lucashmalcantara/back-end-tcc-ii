@@ -4,7 +4,7 @@ namespace Sapfi.Api.V1.Domain.Models.LineState.Update
 {
     public class TicketModel
     {
-        public string  ExternalId { get; private set; }
+        public string ExternalId { get; private set; }
         public string Number { get; private set; }
         public DateTime IssueDate { get; private set; }
         public int LinePosition { get; private set; }
@@ -16,14 +16,17 @@ namespace Sapfi.Api.V1.Domain.Models.LineState.Update
             string number,
             DateTime issueDate,
             int linePosition,
-            int waitingTime)
+            int waitingTime,
+            DateTime? calledAt)
         {
             ExternalId = externalId;
             Number = number;
             IssueDate = issueDate;
             LinePosition = linePosition;
             WaitingTime = waitingTime;
+            CalledAt = calledAt;
         }
+
         private TicketModel() { }
     }
 }

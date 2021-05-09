@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Sapfi.Api.V1.Domain.Interfaces.Services;
-using Sapfi.Api.V1.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,13 +11,13 @@ namespace Sapfi.Api.V1.Application.HostedServices
     public class NotificationHostedService : BackgroundService
     {
         private readonly ILogger<NotificationHostedService> _logger;
-        private readonly INotificationService _notificationService;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
         private const int CheckUpdateTime = 5000;
 
-        public NotificationHostedService(ILogger<NotificationHostedService> logger, INotificationService notificationService)
+        public NotificationHostedService(ILogger<NotificationHostedService> logger, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
-            _notificationService = notificationService;
+            _serviceScopeFactory = serviceScopeFactory;
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -34,7 +32,11 @@ namespace Sapfi.Api.V1.Application.HostedServices
 
                 try
                 {
-                    await _notificationService.SendAllPending();
+                    using (var scope = _serviceScopeFactory.CreateScope())
+                    {
+                        var notificationService = scope.ServiceProvider.GetService<INotificationService>();
+                        await notificationService.SendAllPending();
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -1,5 +1,5 @@
 ﻿-----------------------------------------------------
--- DROP TABLE ORDER
+-- DROP TABLE
 -----------------------------------------------------
 
 --DROP TABLE line_follow_up;
@@ -10,6 +10,17 @@
 --DROP TABLE address;
 --DROP TABLE company;
 
+-----------------------------------------------------
+-- CLEAN
+-----------------------------------------------------
+
+--delete from line_follow_up;
+--delete from line;
+--delete from ticket_follow_up;
+--delete from ticket;
+--delete from notification;
+--delete from address;
+--delete from company;
 
 -----------------------------------------------------
 -- LOAD COMPANY
@@ -31,10 +42,10 @@ values
 	NOW(),
 	null,
 	false,
-	'451ed7f8-d284-4120-b284-7c98f999ebc2',
-	'67194226000141',
-	'JD Doces',
-	'Jaqueline e Danilo Doces & Salgados Ltda',
+	'f6e38f27-b193-45ae-8d72-594721a4d237',
+	'60630017000154',
+	'Araguaia Porções',
+	'Theodoro Afonso Lanches Ltda',
 	'ABCD'
 ),
 (
@@ -56,6 +67,16 @@ values
 	'RR Pizzaria',
 	'Rafael e Ricardo Pizzaria Delivery Ltda',
 	'IJKL'
+),
+(
+	NOW(),
+	null,
+	false,
+	'451ed7f8-d284-4120-b284-7c98f999ebc2',
+	'67194226000141',
+	'JD Doces',
+	'Jaqueline e Danilo Doces & Salgados Ltda',
+	'MNOP'
 );
 
 
@@ -120,6 +141,20 @@ values
 	'Av. João César de Oliveira',
 	'99.992',
 	null
+),
+(
+	4,
+	NOW(),
+	null,
+	false,
+	'BRA',
+	'MG',
+	'Contagem',
+	'32340001',
+	'Eldorado',
+	'Av. João César de Oliveira',
+	'99.993',
+	null
 );
 
 ----------------------------------------------------
@@ -141,15 +176,15 @@ values
 	NOW(),
 	null,
 	false,
-	5,
-	20
+	15,
+	45
 ),
 (
 	2,
 	NOW(),
 	null,
 	false,
-	6,
+	5,
 	15
 ),
 (
@@ -157,8 +192,16 @@ values
 	NOW(),
 	null,
 	false,
-	3,
-	10
+	10,
+	30
+),
+(
+	4,
+	NOW(),
+	null,
+	false,
+	7,
+	37
 );
 
 ----------------------------------------------------

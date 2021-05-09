@@ -78,6 +78,7 @@ namespace Sapfi.Api.V1.Services
 
             if (ticket != null)
             {
+                ticket.IssueDate = ticketModel.IssueDate;
                 ticket.LinePosition = ticketModel.LinePosition;
                 ticket.WaitingTime = ticketModel.WaitingTime;
                 ticket.CalledAt = ticketModel.CalledAt;
@@ -153,10 +154,8 @@ namespace Sapfi.Api.V1.Services
 
             if (ticketFollowUp.Ticket.CalledAt.HasValue)
             {
-                var dateTimeBrazil = ticketFollowUp.Ticket.CalledAt.Value.AddHours(-3);
-
                 title = "Seu pedido está pronto";
-                body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {dateTimeBrazil:dd/MM/yyyy HH:mm}";
+                body = $"Seu pedido está pronto para retirada. Seu ticket foi chamado em: {ticketFollowUp.Ticket.CalledAt.Value:dd/MM/yyyy HH:mm}";
         
                 ticketFollowUp.IsNotified = true;
                 _ticketFollowUpRepository.Update(ticketFollowUp);
